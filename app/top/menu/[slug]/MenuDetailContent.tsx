@@ -4,8 +4,19 @@ import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import type { MenuItem } from '../menuData'
-import { allergenEmoji } from '../menuData'
+import type { MenuItem } from '@/types/menu'
+
+const allergenEmoji: Record<string, string> = {
+  '卵': '🥚',
+  '乳': '🥛',
+  '小麦': '🌾',
+  '大豆': '🫘',
+  '豚肉': '🐷',
+  'ごま': '🌿',
+  'えび': '🦐',
+  'かに': '🦀',
+  '落花生': '🥜',
+}
 
 export default function MenuDetailContent({ item }: { item: MenuItem }) {
   const handleBack = () => {
@@ -14,11 +25,11 @@ export default function MenuDetailContent({ item }: { item: MenuItem }) {
   }
 
   const nutritionRows = [
-    { label: 'エネルギー', value: `${item.nutrition.energy}kcal` },
-    { label: 'たんぱく質', value: `${item.nutrition.protein}g` },
-    { label: '脂質', value: `${item.nutrition.fat}g` },
-    { label: '炭水化物', value: `${item.nutrition.carbs}g` },
-    { label: '食塩相当量', value: `${item.nutrition.salt}g` },
+    { label: 'エネルギー', value: `${item.calories}kcal` },
+    { label: 'たんぱく質', value: `${item.protein}g` },
+    { label: '脂質', value: `${item.fat}g` },
+    { label: '炭水化物', value: `${item.carbs}g` },
+    { label: '食塩相当量', value: `${item.salt}g` },
   ]
 
   return (
@@ -44,7 +55,7 @@ export default function MenuDetailContent({ item }: { item: MenuItem }) {
           <div className="w-full md:w-[580px] shrink-0">
             <div className="relative w-full rounded-2xl shadow-md overflow-hidden" style={{ height: '520px' }}>
               <Image
-                src={item.image}
+                src={item.image.url}
                 alt={item.name}
                 fill
                 className="object-cover object-center"
@@ -57,7 +68,7 @@ export default function MenuDetailContent({ item }: { item: MenuItem }) {
           <div className="flex-1 min-w-0 pl-4">
 
             {/* GFバッジ */}
-            {item.glutenFree && (
+            {item.isGlutenFree && (
               <span
                 className="inline-flex items-center mb-2 text-[10px] text-white px-2.5 py-0.5 rounded tracking-widest"
                 style={{

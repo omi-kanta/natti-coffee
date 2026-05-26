@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation'
-import { drinkItems } from '../../menuData'
+import { getMenuItem, getMenuList } from '@/lib/menu'
 import DrinkDetailContent from './DrinkDetailContent'
 
-export function generateStaticParams() {
-  return drinkItems.map(item => ({ slug: item.slug }))
+export async function generateStaticParams() {
+  const items = await getMenuList('drink')
+  return items.map(item => ({ slug: item.id }))
 }
 
 export default async function DrinkDetailPage({
@@ -12,7 +13,7 @@ export default async function DrinkDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const item = drinkItems.find(d => d.slug === slug)
+  const item = await getMenuItem(slug).catch(() => null)
   if (!item) notFound()
 
   return <DrinkDetailContent item={item} />

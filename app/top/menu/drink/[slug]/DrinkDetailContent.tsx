@@ -4,22 +4,33 @@ import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import type { DrinkItem } from '../../menuData'
-import { allergenEmoji } from '../../menuData'
+import type { MenuItem } from '@/types/menu'
 
-export default function DrinkDetailContent({ item }: { item: DrinkItem }) {
-  const nutritionRows = [
-    { label: 'エネルギー', value: `${item.nutrition.energy}kcal` },
-    { label: 'たんぱく質', value: `${item.nutrition.protein}g` },
-    { label: '脂質',       value: `${item.nutrition.fat}g` },
-    { label: '炭水化物',   value: `${item.nutrition.carbs}g` },
-    { label: '食塩相当量', value: `${item.nutrition.salt}g` },
-  ]
+const allergenEmoji: Record<string, string> = {
+  '卵': '🥚',
+  '乳': '🥛',
+  '小麦': '🌾',
+  '大豆': '🫘',
+  '豚肉': '🐷',
+  'ごま': '🌿',
+  'えび': '🦐',
+  'かに': '🦀',
+  '落花生': '🥜',
+}
 
+export default function DrinkDetailContent({ item }: { item: MenuItem }) {
   const handleBack = () => {
     sessionStorage.setItem('natti_scroll_to', 'drink-menu')
     window.location.href = '/top'
   }
+
+  const nutritionRows = [
+    { label: 'エネルギー', value: `${item.calories}kcal` },
+    { label: 'たんぱく質', value: `${item.protein}g` },
+    { label: '脂質', value: `${item.fat}g` },
+    { label: '炭水化物', value: `${item.carbs}g` },
+    { label: '食塩相当量', value: `${item.salt}g` },
+  ]
 
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
@@ -44,7 +55,7 @@ export default function DrinkDetailContent({ item }: { item: DrinkItem }) {
           <div className="w-full md:w-[580px] shrink-0">
             <div className="relative w-full rounded-2xl shadow-md overflow-hidden" style={{ height: '520px' }}>
               <Image
-                src={item.image}
+                src={item.image.url}
                 alt={item.name}
                 fill
                 className="object-cover object-center"

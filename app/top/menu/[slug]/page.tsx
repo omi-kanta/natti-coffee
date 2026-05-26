@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation'
-import { menuItems } from '../menuData'
+import { getMenuItem, getMenuList } from '@/lib/menu'
 import MenuDetailContent from './MenuDetailContent'
 
-export function generateStaticParams() {
-  return menuItems.map(item => ({ slug: item.slug }))
+export async function generateStaticParams() {
+  const items = await getMenuList('food')
+  return items.map(item => ({ slug: item.id }))
 }
 
 export default async function MenuDetailPage({
@@ -12,7 +13,7 @@ export default async function MenuDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const item = menuItems.find(m => m.slug === slug)
+  const item = await getMenuItem(slug).catch(() => null)
   if (!item) notFound()
 
   return <MenuDetailContent item={item} />
