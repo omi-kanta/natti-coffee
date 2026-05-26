@@ -3,14 +3,19 @@ import { MenuItem } from '@/types/menu';
 
 // メニュー一覧取得
 export const getMenuList = async (category?: 'drink' | 'food') => {
-  const data = await client.getList<MenuItem>({
-    endpoint: 'menu',
-    queries: {
-      filters: category ? `category[equals]${category}` : undefined,
-      limit: 100,
-    },
-  });
-  return data.contents;
+  try {
+    const data = await client.getList<MenuItem>({
+      endpoint: 'menu',
+      queries: {
+        filters: category ? `category[contains]${category}` : undefined,
+        limit: 100,
+      },
+    });
+    return data.contents;
+  } catch (error) {
+    console.error('microCMS fetch error:', error);
+    return [];
+  }
 };
 
 // メニュー詳細取得

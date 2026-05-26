@@ -4,7 +4,7 @@ export type MenuItem = {
   id: string;
   name: string;
   subheading: string;
-  category: 'drink' | 'food';
+  category: 'drink'[] | 'food'[];
   image: { url: string; width: number; height: number };
   description: string;
   ingredients: string;
