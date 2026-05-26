@@ -4,64 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import MenuGrid from "./MenuGrid";
+import { MenuItem } from "@/types/menu";
 
-const items = [
-  {
-    slug: "coffee",
-    name: "Coffee",
-    desc: "自家焙煎・レバーマシン抽出",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
-  },
-  {
-    slug: "cafe-latte",
-    name: "Café Latte",
-    desc: "まろやかミルクと深煎りのハーモニー",
-    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80",
-  },
-  {
-    slug: "espresso",
-    name: "Espresso",
-    desc: "凝縮されたコーヒーの旨味",
-    image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80",
-  },
-  {
-    slug: "matcha-latte",
-    name: "Matcha Latte",
-    desc: "国産抹茶×低糖質ミルク",
-    image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=800&q=80",
-  },
-  {
-    slug: "cold-brew",
-    name: "Cold Brew",
-    desc: "12時間水出し・すっきり低酸味",
-    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80",
-  },
-  {
-    slug: "chai-latte",
-    name: "Chai Latte",
-    desc: "スパイス香るミルクティー",
-    image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=800&q=80",
-  },
-  {
-    slug: "lemonade",
-    name: "Lemonade",
-    desc: "国産レモン×はちみつ",
-    image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80",
-  },
-  {
-    slug: "hojicha-latte",
-    name: "Hojicha Latte",
-    desc: "深煎り焙じ茶×低糖質ミルク",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
-  },
-];
-
-function MenuCard({ item }: { item: (typeof items)[0] }) {
+function MenuCard({ item }: { item: MenuItem }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <Link
-      href={`/top/menu/drink/${item.slug}`}
+      href={`/top/menu/drink/${item.id}`}
       style={{ textDecoration: "none", color: "inherit", display: "block" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -71,7 +21,7 @@ function MenuCard({ item }: { item: (typeof items)[0] }) {
         style={{ borderRadius: "8px" }}
       >
         <Image
-          src={item.image}
+          src={item.image.url}
           alt={item.name}
           fill
           className="object-cover"
@@ -105,14 +55,14 @@ function MenuCard({ item }: { item: (typeof items)[0] }) {
             fontWeight: 300,
           }}
         >
-          {item.desc}
+          {item.subheading}
         </p>
       </div>
     </Link>
   );
 }
 
-export default function CoffeeMenu() {
+export default function CoffeeMenu({ items }: { items: MenuItem[] }) {
   return (
     <section
       id="drink-menu"

@@ -4,64 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import MenuGrid from "./MenuGrid";
+import { MenuItem } from "@/types/menu";
 
-const items = [
-  {
-    slug: "galette",
-    name: "Galette",
-    desc: "そば粉・グルテンフリー",
-    image: "https://images.unsplash.com/photo-1577953589629-446f28f0d8c1?w=800&q=80",
-  },
-  {
-    slug: "low-carb-wrap",
-    name: "Salad Wrap",
-    desc: "低糖質トルティーヤ×彩り野菜",
-    image: "https://images.unsplash.com/photo-1655017976653-55a06c602d11?w=800&q=80",
-  },
-  {
-    slug: "salad-bowl",
-    name: "Salad Bowl",
-    desc: "旬の野菜たっぷり",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
-  },
-  {
-    slug: "gluten-free-cake",
-    name: "Cake",
-    desc: "グルテンフリーの本日のケーキ",
-    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80",
-  },
-  {
-    slug: "mushroom-egg",
-    name: "Mushroom Egg",
-    desc: "マッシュルームと卵のフレンチスタイル",
-    image: "https://images.unsplash.com/photo-1655017976653-55a06c602d11?w=800&q=80",
-  },
-  {
-    slug: "rice-flour-scone",
-    name: "Rice Scone",
-    desc: "米粉サクサクスコーン",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
-  },
-  {
-    slug: "avocado-toast",
-    name: "Avocado Toast",
-    desc: "低糖質パン×濃厚アボカド",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
-  },
-  {
-    slug: "quinoa-bowl",
-    name: "Quinoa Bowl",
-    desc: "キヌア×スーパーフード盛り",
-    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80",
-  },
-];
-
-function FoodCard({ item }: { item: (typeof items)[0] }) {
+function FoodCard({ item }: { item: MenuItem }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <Link
-      href={`/top/menu/${item.slug}`}
+      href={`/top/menu/${item.id}`}
       style={{ textDecoration: "none", color: "inherit", display: "block" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -71,7 +21,7 @@ function FoodCard({ item }: { item: (typeof items)[0] }) {
         style={{ borderRadius: "8px" }}
       >
         <Image
-          src={item.image}
+          src={item.image.url}
           alt={item.name}
           fill
           className="object-cover"
@@ -105,14 +55,14 @@ function FoodCard({ item }: { item: (typeof items)[0] }) {
             fontWeight: 300,
           }}
         >
-          {item.desc}
+          {item.subheading}
         </p>
       </div>
     </Link>
   );
 }
 
-export default function FoodMenu() {
+export default function FoodMenu({ items }: { items: MenuItem[] }) {
   return (
     <section
       id="food-menu"
