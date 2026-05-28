@@ -11,7 +11,7 @@ function FoodCard({ item }: { item: MenuItem }) {
 
   return (
     <Link
-      href={`/top/menu/${item.id}`}
+      href={`/top/menu/food/${item.id}`}
       style={{ textDecoration: "none", color: "inherit", display: "block" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

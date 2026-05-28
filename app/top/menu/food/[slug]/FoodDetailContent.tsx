@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from '../../../components/Header'
+import Footer from '../../../components/Footer'
 import type { MenuItem } from '@/types/menu'
 
 const allergenEmoji: Record<string, string> = {

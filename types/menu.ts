@@ -13,6 +13,5 @@ export type MenuItem = {
   fat: number;
   carbs: number;
   salt: number;
-  isGlutenFree: boolean;
   allergens: Allergen[];
 };
