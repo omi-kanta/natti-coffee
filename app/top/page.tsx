@@ -12,11 +12,13 @@ import VisitUs from "./components/VisitUs";
 import Footer from "./components/Footer";
 import { getMenuList } from "@/lib/menu";
 import { getHeroContent } from "@/lib/hero";
+import { getSettings } from "@/lib/settings";
 
 export default async function Top() {
   const drinkItems = await getMenuList('drink');
   const foodItems = await getMenuList('food');
   const heroContent = await getHeroContent();
+  const settings = await getSettings();
 
   return (
     <LoadingWrapper>
@@ -27,7 +29,7 @@ export default async function Top() {
         <OurPhilosophy />
         <CoffeeMenu items={drinkItems} />
         <FoodMenu items={foodItems} />
-        <MenuPdfBanner />
+        <MenuPdfBanner menuPdfUrl={settings?.menuPdfUrl} />
         <Instagram />
         <NatuviewSection />
         <VisitUs />

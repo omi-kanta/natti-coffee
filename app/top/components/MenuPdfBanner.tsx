@@ -3,12 +3,18 @@
 import { motion } from 'framer-motion';
 import { FileText } from 'lucide-react';
 
+
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' as const } },
 };
 
-export default function MenuPdfBanner() {
+type MenuPdfBannerProps = {
+  menuPdfUrl?: string
+}
+
+export default function MenuPdfBanner({ menuPdfUrl }: MenuPdfBannerProps) {
   return (
     <section style={{ backgroundColor: '#FAF7F2', padding: '0 0 64px' }}>
       <div
@@ -70,7 +76,7 @@ export default function MenuPdfBanner() {
           }}
         >
           <a
-            href="/menu/natti_menu.pdf"
+            href={menuPdfUrl || "/menu/natti_menu.pdf"}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -95,18 +101,6 @@ export default function MenuPdfBanner() {
             <FileText size={16} />
             全メニューを見る
           </a>
-
-          <p
-            style={{
-              fontFamily: "'Noto Sans JP', sans-serif",
-              fontSize: '11px',
-              color: '#3D3D3D',
-              opacity: 0.4,
-              marginTop: '16px',
-            }}
-          >
-            ※ PDFが開きます。メニュー内容は変更になる場合があります。
-          </p>
         </motion.div>
       </div>
     </section>
