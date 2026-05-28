@@ -1,50 +1,47 @@
 "use client";
 
-const btnStyle: React.CSSProperties = {
-  display: "inline-block",
-  padding: "14px 32px",
-  borderRadius: "9999px",
-  backgroundColor: "#2D4A2D",
-  color: "#FFFFFF",
-  fontSize: "13px",
-  fontWeight: 600,
-  letterSpacing: "0.08em",
-  fontFamily: "'Josefin Sans', sans-serif",
-  textDecoration: "none",
-  border: "none",
-  cursor: "pointer",
-  transition: "opacity 0.2s ease",
-};
+type HeroSliderProps = {
+  catchcopy?: string
+}
 
-export default function HeroSlider() {
+export default function HeroSlider({ catchcopy }: HeroSliderProps) {
   return (
     <div className="relative w-full" style={{ height: "85vh" }}>
+
+      {/* PC用動画（md以上） */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
+        className="hidden md:block absolute inset-0 w-full h-full object-cover"
       >
-        <source
-          src="/mixkit-serving-an-espresso-in-a-cup-of-a-coffee-pot-3575-hd-ready.mp4"
-          type="video/mp4"
-        />
+        <source src="/hero-pc.mp4" type="video/mp4" />
       </video>
+
+      {/* SP用動画（md未満） */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="block md:hidden absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/hero-sp.mp4" type="video/mp4" />
+      </video>
+
+      {/* オーバーレイ */}
       <div
         className="absolute inset-0"
         style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
       />
+
+      {/* テキスト */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center text-white px-6 max-w-3xl">
           <div className="flex items-center justify-center gap-3 mb-5">
-            {/* natti — viewBox crops y:0-130 */}
+
+            {/* natti */}
             <svg
               width="185"
               height="50"
@@ -60,7 +57,8 @@ export default function HeroSlider() {
               />
               <circle cx="464" cy="20" r="16" fill="#FF5A5A" />
             </svg>
-            {/* Coffee — viewBox crops y:168-256 */}
+
+            {/* Coffee */}
             <svg
               width="182"
               height="50"
@@ -75,7 +73,10 @@ export default function HeroSlider() {
                 fill="#1D3D1D"
               />
             </svg>
+
           </div>
+
+          {/* microCMSから取得するキャッチコピー */}
           <p
             className="mb-10"
             style={{
@@ -85,16 +86,9 @@ export default function HeroSlider() {
               opacity: 0.88,
             }}
           >
-            低糖質・グルテンフリーの本格コーヒー
+            {catchcopy || "低糖質・グルテンフリーの本格コーヒー"}
           </p>
-          {/* <a
-            href="#menu"
-            style={btnStyle}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-          >
-            MENU を見る
-          </a> */}
+
         </div>
       </div>
     </div>

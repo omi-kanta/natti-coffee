@@ -11,17 +11,19 @@ import NatuviewSection from "./components/NatuviewSection";
 import VisitUs from "./components/VisitUs";
 import Footer from "./components/Footer";
 import { getMenuList } from "@/lib/menu";
+import { getHeroContent } from "@/lib/hero";
 
 export default async function Top() {
   const drinkItems = await getMenuList('drink');
   const foodItems = await getMenuList('food');
+  const heroContent = await getHeroContent();
 
   return (
     <LoadingWrapper>
       <main style={{ backgroundColor: '#FAF7F2' }}>
         <AnnouncementBar />
         <Header />
-        <HeroSlider />
+        <HeroSlider catchcopy={heroContent?.catchcopy} />
         <OurPhilosophy />
         <CoffeeMenu items={drinkItems} />
         <FoodMenu items={foodItems} />
