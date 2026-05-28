@@ -67,21 +67,6 @@ export default function MenuDetailContent({ item }: { item: MenuItem }) {
           {/* 右カラム: テキスト */}
           <div className="flex-1 min-w-0 pl-4">
 
-            {/* GFバッジ */}
-            {item.isGlutenFree && (
-              <span
-                className="inline-flex items-center mb-2 text-[10px] text-white px-2.5 py-0.5 rounded tracking-widest"
-                style={{
-                  backgroundColor: '#2D4A2D',
-                  fontFamily: "'Josefin Sans', sans-serif",
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                }}
-              >
-                GF グルテンフリー
-              </span>
-            )}
-
             {/* 商品名 */}
             <h1
               className="text-2xl font-bold text-[#1A1A1A] leading-snug mb-3"

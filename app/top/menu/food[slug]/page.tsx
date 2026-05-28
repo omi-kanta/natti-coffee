@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getMenuItem, getMenuList } from '@/lib/menu'
-import MenuDetailContent from './MenuDetailContent'
+import MenuDetailContent from './FoodDetailContent'
 
 export async function generateStaticParams() {
   const items = await getMenuList('food')
