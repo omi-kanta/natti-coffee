@@ -30,7 +30,6 @@ function Card({
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease: "easeOut", delay }}
     >
-      {/* 背景画像 */}
       <Image
         src={image}
         alt={label}
@@ -38,8 +37,6 @@ function Card({
         className="object-cover object-center"
         sizes="(max-width: 768px) 100vw, 50vw"
       />
-
-      {/* グラデーションオーバーレイ */}
       <div
         className="absolute inset-0"
         style={{
@@ -47,8 +44,6 @@ function Card({
             "linear-gradient(to top, rgba(45,74,45,0.85) 0%, transparent 50%)",
         }}
       />
-
-      {/* テキスト（左下固定） */}
       <div className="absolute bottom-8 left-8 right-8">
         <p
           className="text-[10px] tracking-[0.25em] uppercase mb-2"
@@ -103,10 +98,17 @@ function Card({
   );
 }
 
-export default function OurPhilosophy() {
+export default function OurPhilosophy({
+  storyImage,
+  storyTitle,
+  storyBody,
+}: {
+  storyImage?: string
+  storyTitle?: string
+  storyBody?: string
+}) {
   return (
     <section className="w-full py-20" style={{ backgroundColor: "#FAF7F2" }}>
-      {/* ラベル */}
       <p
         className="text-xs tracking-[0.3em] uppercase text-center mb-4"
         style={{ color: "#E8453C", fontFamily: "system-ui, -apple-system, sans-serif" }}
@@ -114,7 +116,6 @@ export default function OurPhilosophy() {
         OUR PHILOSOPHY
       </p>
 
-      {/* 見出し */}
       <h2
         className="text-2xl md:text-3xl font-bold text-center mb-16"
         style={{
@@ -125,20 +126,16 @@ export default function OurPhilosophy() {
         私たちについて
       </h2>
 
-      {/* 2列カード */}
       <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* 左カード：OUR STORY */}
         <Card
-          image="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
+          image={storyImage || "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"}
           label="OUR STORY"
-          title="ふわっとした、小さな友だち。"
-          body="nattiのロゴにいる、あの生き物。Be Happyを届けること。"
+          title={storyTitle || "ふわっとした、小さな友だち。"}
+          body={storyBody || "nattiのロゴにいる、あの生き物。Be Happyを届けること。"}
           href="/top/story"
           animateX={-30}
           delay={0}
         />
-
-        {/* 右カード：ABOUT US */}
         <Card
           image="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80"
           label="ABOUT US"

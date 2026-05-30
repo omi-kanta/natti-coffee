@@ -4,7 +4,11 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Cloud from './Cloud';
 
-export default function Hero() {
+type HeroProps = {
+  image?: string
+}
+
+export default function Hero({ image }: HeroProps) {
   return (
     <section
       style={{
@@ -16,18 +20,12 @@ export default function Hero() {
         alignItems: 'stretch',
       }}
     >
-      {/* 雲（背景） */}
       <Cloud width={180} opacity={0.65} style={{ bottom: '15%', left: '-20px' }} duration={6} />
       <Cloud width={120} opacity={0.5} style={{ top: '10%', left: '5%' }} duration={9} />
       <Cloud width={100} opacity={0.45} style={{ bottom: '30%', left: '8%' }} duration={7} />
       <Cloud width={80} opacity={0.4} style={{ top: '25%', left: '2%' }} duration={5} />
 
-      {/* PC: 左テキスト / 右写真 */}
-      <div
-        className="flex flex-col md:flex-row"
-        style={{ width: '100%', minHeight: '90vh' }}
-      >
-        {/* 左テキスト */}
+      <div className="flex flex-col md:flex-row" style={{ width: '100%', minHeight: '90vh' }}>
         <motion.div
           className="flex flex-col justify-center"
           style={{
@@ -65,21 +63,16 @@ export default function Hero() {
           </h1>
         </motion.div>
 
-        {/* 右写真 */}
-        <div
-          style={{
-            flex: '0 0 50%',
-            position: 'relative',
-            minHeight: '300px',
-          }}
-        >
-          <Image
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80"
-            alt="コーヒー"
-            fill
-            style={{ objectFit: 'cover' }}
-            priority
-          />
+        <div style={{ flex: '0 0 50%', position: 'relative', minHeight: '300px' }}>
+          {image && (
+            <Image
+              src={image}
+              alt="story"
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          )}
         </div>
       </div>
     </section>

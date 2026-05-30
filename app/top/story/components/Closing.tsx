@@ -4,7 +4,12 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Cloud from './Cloud';
 
-export default function Closing() {
+type ClosingProps = {
+  endingText?: string
+  endingSubText?: string
+}
+
+export default function Closing({ endingText, endingSubText }: ClosingProps) {
   return (
     <section
       style={{
@@ -19,7 +24,6 @@ export default function Closing() {
         textAlign: 'center',
       }}
     >
-      {/* 雲（左右） */}
       <Cloud width={130} opacity={0.5} style={{ top: '20%', left: '-15px' }} duration={7} />
       <Cloud width={110} opacity={0.45} style={{ bottom: '25%', right: '-10px' }} duration={9} />
 
@@ -32,7 +36,6 @@ export default function Closing() {
           zIndex: 10,
         }}
       >
-        {/* natti くん（バウンス） */}
         <motion.div
           style={{ marginBottom: '32px', display: 'inline-block' }}
           animate={{ y: [0, -8, 0] }}
@@ -47,41 +50,42 @@ export default function Closing() {
           />
         </motion.div>
 
-        {/* メインテキスト */}
-        <motion.p
-          style={{
-            fontFamily: "system-ui, -apple-system, sans-serif",
-            color: '#3D3D3D',
-            fontSize: 'clamp(16px, 2.5vw, 24px)',
-            lineHeight: 2,
-            whiteSpace: 'pre-line',
-            marginBottom: '24px',
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-        >
-          {
-            'あなたが手にしたその一杯、ひとくちにも、\nこの "ちいさな友だち" がそっと寄り添っています。'
-          }
-        </motion.p>
+        {endingText && (
+          <motion.p
+            style={{
+              fontFamily: "system-ui, -apple-system, sans-serif",
+              color: '#3D3D3D',
+              fontSize: 'clamp(16px, 2.5vw, 24px)',
+              lineHeight: 2,
+              whiteSpace: 'pre-line',
+              marginBottom: '24px',
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            {endingText}
+          </motion.p>
+        )}
 
-        <motion.p
-          style={{
-            fontFamily: "'Noto Sans JP', sans-serif",
-            fontWeight: 300,
-            color: '#3D3D3D',
-            opacity: 0.6,
-            fontSize: '14px',
-          }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.6 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
-        >
-          今日も、あなたとあなたの体に、Be Happy を。
-        </motion.p>
+        {endingSubText && (
+          <motion.p
+            style={{
+              fontFamily: "'Noto Sans JP', sans-serif",
+              fontWeight: 300,
+              color: '#3D3D3D',
+              opacity: 0.6,
+              fontSize: '14px',
+            }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.6 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+          >
+            {endingSubText}
+          </motion.p>
+        )}
       </div>
     </section>
   );

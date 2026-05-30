@@ -4,24 +4,22 @@ import Image from 'next/image';
 import { motion, type Variants } from 'framer-motion';
 import Cloud from './Cloud';
 
-const lines = [
-  { text: 'natti のロゴにいる、あのふわっとした生き物。', gap: false },
-  { text: '名前はまだないけれど、', gap: false },
-  { text: 'みんなからはそっと', gap: false },
-  { text: '"natti のちいさな友だち" と呼ばれています。', gap: true },
-  { text: '彼らの住まいは、森の奥にある ひだまりの丘。', gap: false },
-  { text: '太陽と、やさしい空気と、', gap: false },
-  { text: 'いい香りのコーヒーが大好きです。', gap: true },
-  { text: '心と体が「かろやか」であること。', gap: false },
-  { text: 'それが、彼らの一番大切にしていること。', gap: false },
-];
+type MainCopyProps = {
+  image?: string
+  heading?: string
+  description?: string
+}
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' as const } },
 };
 
-export default function MainCopy() {
+export default function MainCopy({ image, heading, description }: MainCopyProps) {
+  const lines = description
+    ? description.split('\n').map((text) => ({ text, gap: text === '' }))
+    : []
+
   return (
     <section
       id="main-copy"
@@ -33,7 +31,6 @@ export default function MainCopy() {
         overflow: 'hidden',
       }}
     >
-      {/* 雲（右側） */}
       <Cloud width={140} opacity={0.5} style={{ top: '10%', right: '-10px' }} duration={7} />
       <Cloud width={100} opacity={0.45} style={{ bottom: '20%', right: '5%' }} duration={9} />
 
@@ -47,7 +44,6 @@ export default function MainCopy() {
           zIndex: 10,
         }}
       >
-        {/* 左テキスト */}
         <motion.div
           className="flex-1"
           variants={fadeUp}
@@ -55,20 +51,20 @@ export default function MainCopy() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <h2
-            style={{
-              fontFamily: "system-ui, -apple-system, sans-serif",
-              color: '#3D3D3D',
-              fontSize: 'clamp(20px, 3vw, 32px)',
-              lineHeight: 1.8,
-              marginBottom: '32px',
-            }}
-          >
-            natti のちいさな友だちから広がる、
-            <br />
-            やさしさ。
-          </h2>
-
+          {heading && (
+            <h2
+              style={{
+                fontFamily: "system-ui, -apple-system, sans-serif",
+                color: '#3D3D3D',
+                fontSize: 'clamp(20px, 3vw, 32px)',
+                lineHeight: 1.8,
+                marginBottom: '32px',
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {heading}
+            </h2>
+          )}
           <div>
             {lines.map((line, i) => (
               <p
@@ -89,7 +85,6 @@ export default function MainCopy() {
           </div>
         </motion.div>
 
-        {/* 右写真 */}
         <motion.div
           className="w-full md:w-auto"
           style={{ flex: '0 0 auto' }}
@@ -99,45 +94,41 @@ export default function MainCopy() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ delay: 0.15 }}
         >
-          {/* SP用 */}
-          <div
-            className="md:hidden"
-            style={{
-              position: 'relative',
-              width: '100%',
-              height: '280px',
-              overflow: 'hidden',
-            }}
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80"
-              alt="森・ひだまり"
-              fill
-              sizes="100vw"
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
-            />
-          </div>
-
-          {/* PC用 */}
-          <div
-            className="hidden md:block"
-            style={{
-              position: 'relative',
-              width: '460px',
-              height: '440px',
-              overflow: 'hidden',
-              borderRadius: '12px',
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80"
-              alt="森・ひだまり"
-              fill
-              sizes="460px"
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
-            />
-          </div>
+          {image && (
+            <>
+              <div
+                className="md:hidden"
+                style={{ position: 'relative', width: '100%', height: '280px', overflow: 'hidden' }}
+              >
+                <Image
+                  src={image}
+                  alt="story"
+                  fill
+                  sizes="100vw"
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                />
+              </div>
+              <div
+                className="hidden md:block"
+                style={{
+                  position: 'relative',
+                  width: '460px',
+                  height: '440px',
+                  overflow: 'hidden',
+                  borderRadius: '12px',
+                  flexShrink: 0,
+                }}
+              >
+                <Image
+                  src={image}
+                  alt="story"
+                  fill
+                  sizes="460px"
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                />
+              </div>
+            </>
+          )}
         </motion.div>
       </div>
     </section>

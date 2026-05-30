@@ -13,12 +13,14 @@ import Footer from "./components/Footer";
 import { getMenuList } from "@/lib/menu";
 import { getHeroContent } from "@/lib/hero";
 import { getSettings } from "@/lib/settings";
+import { getStoryContent } from "@/lib/story";
 
 export default async function Top() {
   const drinkItems = await getMenuList('drink');
   const foodItems = await getMenuList('food');
   const heroContent = await getHeroContent();
   const settings = await getSettings();
+  const story = await getStoryContent();
 
   return (
     <LoadingWrapper>
@@ -26,7 +28,11 @@ export default async function Top() {
         <AnnouncementBar />
         <Header />
         <HeroSlider catchcopy={heroContent?.catchcopy} />
-        <OurPhilosophy />
+        <OurPhilosophy
+          storyImage={story?.topStoryImage?.url}
+          storyTitle={story?.topStoryTitle}
+          storyBody={story?.topStorySubTitle}
+        />
         <CoffeeMenu items={drinkItems} />
         <FoodMenu items={foodItems} />
         <MenuPdfBanner menuPdfUrl={settings?.menuPdfUrl} />
