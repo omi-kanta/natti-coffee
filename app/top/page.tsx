@@ -11,14 +11,12 @@ import NatuviewSection from "./components/NatuviewSection";
 import VisitUs from "./components/VisitUs";
 import Footer from "./components/Footer";
 import { getMenuList } from "@/lib/menu";
-import { getHeroContent } from "@/lib/hero";
 import { getSettings } from "@/lib/settings";
 import { getStoryContent } from "@/lib/story";
 
 export default async function Top() {
   const drinkItems = await getMenuList('drink');
   const foodItems = await getMenuList('food');
-  const heroContent = await getHeroContent();
   const settings = await getSettings();
   const story = await getStoryContent();
 
@@ -27,7 +25,7 @@ export default async function Top() {
       <main style={{ backgroundColor: '#FAF7F2' }}>
         <AnnouncementBar />
         <Header />
-        <HeroSlider catchcopy={heroContent?.catchcopy} />
+        <HeroSlider catchcopy={settings?.catchCopy} />
         <OurPhilosophy
           storyImage={story?.topStoryImage?.url}
           storyTitle={story?.topStoryTitle}
