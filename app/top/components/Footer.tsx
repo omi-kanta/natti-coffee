@@ -1,17 +1,22 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+export default function Footer() {
+  const pathname = usePathname();
+  const isTop = pathname === "/top";
 
 const aboutLinks = [
-  { label: "Our Story", href: "/top/story" },
+  { label: "Story", href: "/top/story" },
+  { label: "About Us", href: "/top/about" },
   { label: "Information", href: "#visit" },
 ];
 
-const shopLinks = [
-  { label: "Menu", href: "/top#food-menu", external: false },
-  { label: "Online Shop (NATUVIEW)", href: "https://www.natuview.jp/", external: true },
-];
+  const shopLinks = [
+    { label: "Menu", href: isTop ? "#food-menu" : "/top#food-menu", external: false },
+    { label: "Online Shop (NATUVIEW)", href: "https://www.natuview.jp/", external: true },
+  ];
 
-export default function Footer() {
   return (
     <footer
       className="py-16 px-6 md:px-10"
