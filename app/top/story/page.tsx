@@ -13,7 +13,7 @@ export default async function StoryPage() {
     <main style={{ backgroundColor: '#F5F0EB' }}>
       <Header />
       <Hero
-        image={story?.storyHeroImage?.url}
+        image={story?.topImage?.url}
       />
       <MainCopy
         image={story?.storyImage?.url}
@@ -22,19 +22,19 @@ export default async function StoryPage() {
       />
       <ThreeCards
         left={{
-          image: story?.storyLeftImage?.url,
-          title: story?.storyLeftTitle,
-          text: story?.storyLeftText,
+          image: story?.storyCardImage1?.url,
+          title: story?.storyCardTitle1,
+          text: story?.storyCardText1,
         }}
         center={{
-          image: story?.storyCenterImage?.url,
-          title: story?.storyCenterTitle,
-          text: story?.storyCenterText,
+          image: story?.storyCardImage2?.url,
+          title: story?.storyCardTitle2,
+          text: story?.storyCardText2,
         }}
         right={{
-          image: story?.storyRightImage?.url,
-          title: story?.storyRightTitle,
-          text: story?.storyRightText,
+          image: story?.storyCardImage3?.url,
+          title: story?.storyCardTitle3,
+          text: story?.storyCardText3,
         }}
       />
       <Closing

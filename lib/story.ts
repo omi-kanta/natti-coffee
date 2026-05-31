@@ -3,10 +3,10 @@ import { StoryContent } from '@/types/story'
 
 export const getStoryContent = async () => {
   try {
-    const data = await client.getList<StoryContent>({
+    const data = await client.get<StoryContent>({
       endpoint: 'story',
     })
-    return data.contents[0] ?? null
+    return data
   } catch (error) {
     console.error('story fetch error:', error)
     return null

@@ -27,9 +27,9 @@ export default async function Top() {
         <Header />
         <HeroSlider catchcopy={settings?.catchCopy} />
         <OurPhilosophy
-          storyImage={story?.topStoryImage?.url}
-          storyTitle={story?.topStoryTitle}
-          storyBody={story?.topStorySubTitle}
+          storyImage={story?.topImage?.url}
+          storyTitle={story?.topTitle}
+          storyBody={story?.topSubTitle}
         />
         <CoffeeMenu items={drinkItems} />
         <FoodMenu items={foodItems} />
