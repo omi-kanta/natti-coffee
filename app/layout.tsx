@@ -2,8 +2,51 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "natti samples",
-  description: "natti coffee sample pages",
+  title: {
+    default: "natti coffee | ジョンソンタウンにある本格コーヒー",
+    template: "%s | natti coffee",
+  },
+  description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。愛犬と一緒にお越しいただけるテラス席あり。",
+  keywords: ["natti coffee", "ナッティコーヒー", "入間市", "ジョンソンタウン", "カフェ", "自家焙煎", "グルテンフリー", "ペット可"],
+  authors: [{ name: "natti coffee" }],
+  creator: "natti coffee",
+  metadataBase: new URL("https://natticoffee.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    url: "https://natticoffee.com",
+    siteName: "natti coffee",
+    title: "natti coffee | ジョンソンタウンにある本格コーヒー",
+    description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。愛犬と一緒にお越しいただけるテラス席あり。",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "natti coffee",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "natti coffee | ジョンソンタウンにある本格コーヒー",
+    description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
