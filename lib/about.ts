@@ -4,7 +4,7 @@ import { AboutContent } from '@/types/about'
 export const getAboutContent = async () => {
   try {
     const data = await client.get<AboutContent>({
-      endpoint: 'about us',
+      endpoint: 'aboutus',
     })
     return data
   } catch (error) {

@@ -102,10 +102,16 @@ export default function OurPhilosophy({
   storyImage,
   storyTitle,
   storyBody,
+  aboutImage,
+  aboutTitle,
+  aboutBody,
 }: {
   storyImage?: string
   storyTitle?: string
   storyBody?: string
+  aboutImage?: string
+  aboutTitle?: string
+  aboutBody?: string
 }) {
   return (
     <section className="w-full py-20" style={{ backgroundColor: "#FAF7F2" }}>
@@ -137,10 +143,10 @@ export default function OurPhilosophy({
           delay={0}
         />
         <Card
-          image="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80"
+          image={aboutImage || "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80"}
           label="ABOUT US"
-          title="食の歓びと、カラダへの優しさを。"
-          body="体にやさしく、心に豊かな時間をお届けします。"
+          title={aboutTitle || "食の歓びと、カラダへの優しさを。"}
+          body={aboutBody || "体にやさしく、心に豊かな時間をお届けします。"}
           href="/top/about"
           animateX={30}
           delay={0.15}

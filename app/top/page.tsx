@@ -14,6 +14,7 @@ import { getMenuList } from "@/lib/menu";
 import { getSettings } from "@/lib/settings";
 import { getStoryContent } from "@/lib/story";
 import { getInstagramPosts } from "@/lib/instagram";
+import { getAboutContent } from "@/lib/about";
 
 export default async function Top() {
   const drinkItems = await getMenuList('drink');
@@ -21,6 +22,7 @@ export default async function Top() {
   const settings = await getSettings();
   const story = await getStoryContent();
   const posts = await getInstagramPosts();
+  const about = await getAboutContent();
 
   return (
     <LoadingWrapper>
@@ -35,6 +37,9 @@ export default async function Top() {
           storyImage={story?.topImage?.url}
           storyTitle={story?.topTitle}
           storyBody={story?.topSubTitle}
+          aboutImage={about?.topImage?.url}
+          aboutTitle={about?.topTitle}
+          aboutBody={about?.topSubTitle}
         />
         <CoffeeMenu items={drinkItems} />
         <FoodMenu items={foodItems} />
