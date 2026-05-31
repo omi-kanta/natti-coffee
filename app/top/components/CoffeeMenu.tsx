@@ -17,8 +17,8 @@ function MenuCard({ item }: { item: MenuItem }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="relative overflow-hidden aspect-square md:aspect-[11/12]"
-        style={{ borderRadius: "8px" }}
+        className="relative overflow-hidden"
+        style={{ borderRadius: "8px", width: "100%", height: "240px" }}
       >
         <Image
           src={item.image.url}
@@ -103,7 +103,23 @@ export default function CoffeeMenu({ items }: { items: MenuItem[] }) {
           </p>
         </motion.div>
 
-        <MenuGrid items={items} renderItem={(item) => <MenuCard item={item} />} />
+        {/* SP: MenuGrid（既存）/ PC: 4列固定 */}
+        <div className="md:hidden">
+          <MenuGrid items={items} renderItem={(item) => <MenuCard item={item} />} />
+        </div>
+        <div className="hidden md:grid md:grid-cols-4 gap-6">
+          {items.map((item, i) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <MenuCard item={item} />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

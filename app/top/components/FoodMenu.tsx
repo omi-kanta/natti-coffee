@@ -3,7 +3,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import MenuGrid from "./MenuGrid";
 import { MenuItem } from "@/types/menu";
 
 function FoodCard({ item }: { item: MenuItem }) {
@@ -17,8 +16,8 @@ function FoodCard({ item }: { item: MenuItem }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="relative overflow-hidden aspect-square md:aspect-[11/12]"
-        style={{ borderRadius: "8px" }}
+        className="relative overflow-hidden"
+        style={{ borderRadius: "8px", width: "100%", height: "240px" }}
       >
         <Image
           src={item.image.url}
@@ -30,7 +29,7 @@ function FoodCard({ item }: { item: MenuItem }) {
             transition: "transform 0.4s ease",
             borderRadius: "8px",
           }}
-          sizes="(max-width: 768px) 50vw, 25vw"
+          sizes="25vw"
         />
       </div>
       <div className="mt-3 px-1">
@@ -103,7 +102,20 @@ export default function FoodMenu({ items }: { items: MenuItem[] }) {
           </p>
         </motion.div>
 
-        <MenuGrid items={items} renderItem={(item) => <FoodCard item={item} />} />
+        {/* 常に4列固定 */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {items.map((item, i) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <FoodCard item={item} />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
