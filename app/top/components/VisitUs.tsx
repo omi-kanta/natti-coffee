@@ -60,7 +60,7 @@ export default function VisitUs({
 
         <div className="flex flex-col md:flex-row gap-12">
           {/* Left: Info */}
-          <div className="w-full md:w-1/2 flex flex-col gap-7">
+          <div className="w-full md:w-2/5 flex flex-col gap-7">
             {info.map((row) => (
               <div key={row.label}>
                 <p
@@ -94,32 +94,34 @@ export default function VisitUs({
 
           {/* Right: Google Map */}
           <div
-            className="w-full md:w-1/2 overflow-hidden"
-            style={{ height: "420px", borderRadius: "8px" }}
+            className="w-full md:w-3/5 overflow-hidden"
+            style={{ borderRadius: "8px" }}
           >
-            {embedUrl ? (
-              <iframe
-                src={embedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="natti coffee location"
-              />
-            ) : (
-              <iframe
-                src="https://maps.google.com/maps?q=%E5%9F%BC%E7%8E%89%E7%9C%8C%E5%85%A5%E9%96%93%E5%B8%82%E6%9D%B1%E7%94%BA1-2-12+%E5%B9%B3%E6%88%90%E3%83%8F%E3%82%A6%E3%82%B99%E5%8F%B7&output=embed&hl=ja"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="natti coffee location"
-              />
-            )}
+            <div className="h-[420px] md:h-[660px] w-full">
+              {embedUrl ? (
+                <iframe
+                  src={embedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="natti coffee location"
+                />
+              ) : (
+                <iframe
+                  src="https://maps.google.com/maps?q=%E5%9F%BC%E7%8E%89%E7%9C%8C%E5%85%A5%E9%96%93%E5%B8%82%E6%9D%B1%E7%94%BA1-2-12+%E5%B9%B3%E6%88%90%E3%83%8F%E3%82%A6%E3%82%B99%E5%8F%B7&output=embed&hl=ja"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="natti coffee location"
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
