@@ -13,12 +13,14 @@ import Footer from "./components/Footer";
 import { getMenuList } from "@/lib/menu";
 import { getSettings } from "@/lib/settings";
 import { getStoryContent } from "@/lib/story";
+import { getInstagramPosts } from "@/lib/instagram";
 
 export default async function Top() {
   const drinkItems = await getMenuList('drink');
   const foodItems = await getMenuList('food');
   const settings = await getSettings();
   const story = await getStoryContent();
+  const posts = await getInstagramPosts();
 
   return (
     <LoadingWrapper>
@@ -34,7 +36,7 @@ export default async function Top() {
         <CoffeeMenu items={drinkItems} />
         <FoodMenu items={foodItems} />
         <MenuPdfBanner menuPdfUrl={settings?.menuPdfUrl} />
-        <Instagram />
+        <Instagram posts={posts} />
         <NatuviewSection />
         <VisitUs />
         <Footer />
