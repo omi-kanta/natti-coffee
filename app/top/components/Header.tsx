@@ -29,7 +29,7 @@ export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const pathname = usePathname();
   const router = useRouter();
-  const isStoryPage = pathname === "/top/story" || pathname === "/top/about" || pathname.startsWith("/top/menu");
+  const isStoryPage = pathname === "/top/story" || pathname === "/top/about" || pathname.startsWith("/top/menu") || pathname.startsWith("/top/privacy");
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -231,16 +231,16 @@ export default function Footer() {
             © 2026 natti Coffee
           </p>
           <Link
-            href="/"
-            className="text-xs transition-opacity duration-200 hover:opacity-70"
+            href="/top/privacy"
+            className="text-xs transition-opacity duration-200 opacity-40 hover:opacity-70"
             style={{
               color: "#FFFFFF",
-              opacity: 0.4,
-              fontFamily: "'Josefin Sans', sans-serif",
+              fontFamily: "'Noto Sans JP', sans-serif",
+              fontWeight: 300,
               textDecoration: "none",
             }}
           >
-            ← サンプル一覧に戻る
+            プライバシーポリシー
           </Link>
         </div>
       </div>
