@@ -1,4 +1,13 @@
-export default function AnnouncementBar() {
+type Props = {
+  businessHours?: string
+  closed?: string
+}
+
+export default function AnnouncementBar({ businessHours, closed }: Props) {
+  const text = [businessHours, closed].filter(Boolean).join('　　')
+
+  if (!text) return null
+
   return (
     <div
       className="sticky top-0 z-[60] flex items-center justify-center h-10"
@@ -6,14 +15,14 @@ export default function AnnouncementBar() {
     >
       <p
         style={{
-          fontSize: "12px",
+          fontSize: "13px",
           letterSpacing: "0.08em",
           color: "#1A1A1A",
           fontFamily: "system-ui, -apple-system, sans-serif",
         }}
       >
-        水〜日 10:00〜16:00 営業中　＊月・火 定休
+        {text}
       </p>
     </div>
-  );
+  )
 }

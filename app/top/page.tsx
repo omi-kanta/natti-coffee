@@ -25,7 +25,10 @@ export default async function Top() {
   return (
     <LoadingWrapper>
       <main style={{ backgroundColor: '#FAF7F2' }}>
-        <AnnouncementBar />
+        <AnnouncementBar
+          businessHours={settings?.infoBusinessHours}
+          closed={settings?.infoClosed}
+        />
         <Header />
         <HeroSlider catchcopy={settings?.catchCopy} />
         <OurPhilosophy
@@ -38,7 +41,17 @@ export default async function Top() {
         <MenuPdfBanner menuPdfUrl={settings?.menuPdfUrl} />
         <Instagram posts={posts} />
         <NatuviewSection />
-        <VisitUs />
+        <VisitUs
+          address={settings?.infoAddress}
+          tel={settings?.infoTel}
+          businessHours={settings?.infoBusinessHours}
+          closed={settings?.infoClosed}
+          payment={settings?.infoPayment}
+          seats={settings?.infoSeats}
+          parking={settings?.infoParking}
+          dog={settings?.infoDog}
+          mapUrl={settings?.infoMap}
+        />
         <Footer />
       </main>
     </LoadingWrapper>
