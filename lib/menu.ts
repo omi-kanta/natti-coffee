@@ -19,10 +19,11 @@ export const getMenuList = async (category?: 'drink' | 'food') => {
 };
 
 // メニュー詳細取得
-export const getMenuItem = async (id: string) => {
+export const getMenuItem = async (id: string, draftKey?: string) => {
   const data = await client.get<MenuItem>({
     endpoint: 'menu',
     contentId: id,
+    queries: draftKey ? { draftKey } : undefined,
   });
   return data;
 };
