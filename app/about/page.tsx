@@ -2,9 +2,16 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AboutPageContent from './AboutPageContent';
 import { getAboutContent } from '@/lib/about';
+import { draftMode } from 'next/headers';
 
-export default async function About1Page() {
-  const about = await getAboutContent();
+export default async function About1Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ draftKey?: string }>
+}) {
+  const { draftKey } = await searchParams;
+  const { isEnabled } = await draftMode();
+  const about = await getAboutContent(isEnabled ? draftKey : undefined);
 
   return (
     <main style={{ backgroundColor: '#FAF7F2' }}>

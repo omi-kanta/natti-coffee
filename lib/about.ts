@@ -1,10 +1,11 @@
 import { client } from './microcms'
 import { AboutContent } from '@/types/about'
 
-export const getAboutContent = async () => {
+export const getAboutContent = async (draftKey?: string) => {
   try {
     const data = await client.get<AboutContent>({
       endpoint: 'aboutus',
+      queries: draftKey ? { draftKey } : undefined,
     })
     return data
   } catch (error) {

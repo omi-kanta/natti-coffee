@@ -5,9 +5,16 @@ import ThreeCards from './components/ThreeCards';
 import Closing from './components/Closing';
 import Footer from '../components/Footer';
 import { getStoryContent } from '@/lib/story';
+import { draftMode } from 'next/headers';
 
-export default async function StoryPage() {
-  const story = await getStoryContent();
+export default async function StoryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ draftKey?: string }>
+}) {
+  const { draftKey } = await searchParams;
+  const { isEnabled } = await draftMode();
+  const story = await getStoryContent(isEnabled ? draftKey : undefined);
 
   return (
     <main style={{ backgroundColor: '#F5F0EB' }}>
