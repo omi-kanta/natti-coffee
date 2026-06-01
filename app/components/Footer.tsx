@@ -54,16 +54,27 @@ export default function Footer() {
                 About Us
               </Link>
             </div>
-            {/* Menu と Information を横並び */}
-            <div className="flex gap-6">
+            {/* Drink Menu と Food Menu を横並び */}
+            <div className="flex gap-6 mb-3">
+              <a
+                href={isTop ? "#drink-menu" : "/#drink-menu"}
+                style={linkStyle}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+              >
+                Drink Menu
+              </a>
               <a
                 href={isTop ? "#food-menu" : "/#food-menu"}
                 style={linkStyle}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
               >
-                Menu
+                Food Menu
               </a>
+            </div>
+            {/* Information */}
+            <div>
               <a
                 href={isTop ? "#visit" : "/#visit"}
                 style={linkStyle}
