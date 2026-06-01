@@ -107,12 +107,13 @@ export default function AboutPageContent({
 
       {/* ② フルワイド画像 */}
       {aboutImage && (
-        <div style={{ position: 'relative', height: '40vh', width: '100%' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
           <Image
             src={aboutImage}
             alt="natti coffee"
-            fill
-            style={{ objectFit: 'cover' }}
+            width={1920}
+            height={1080}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
             priority
           />
         </div>
