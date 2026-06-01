@@ -17,8 +17,10 @@ import { getInstagramPosts } from "@/lib/instagram";
 import { getAboutContent } from "@/lib/about";
 
 export default async function Top({ searchParams }: { searchParams: Promise<{ preview?: string }> }) {
-  const settings = await getSettings();
-  const params = await searchParams;
+  const [settings, params] = await Promise.all([
+    getSettings(),
+    searchParams,
+  ]);
   const isPreview = params.preview === 'natti2026';
 
   if (!settings?.isPublished && !isPreview) {
@@ -39,11 +41,13 @@ export default async function Top({ searchParams }: { searchParams: Promise<{ pr
     );
   }
 
-  const drinkItems = await getMenuList('drink');
-  const foodItems = await getMenuList('food');
-  const story = await getStoryContent();
-  const posts = await getInstagramPosts();
-  const about = await getAboutContent();
+  const [drinkItems, foodItems, story, posts, about] = await Promise.all([
+    getMenuList('drink'),
+    getMenuList('food'),
+    getStoryContent(),
+    getInstagramPosts(),
+    getAboutContent(),
+  ]);
 
   return (
     <LoadingWrapper>
