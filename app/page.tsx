@@ -15,15 +15,21 @@ import { getSettings } from "@/lib/settings";
 import { getStoryContent } from "@/lib/story";
 import { getInstagramPosts } from "@/lib/instagram";
 import { getAboutContent } from "@/lib/about";
+import { draftMode } from "next/headers";
 
-export default async function Top({ searchParams }: { searchParams: Promise<{ preview?: string }> }) {
-  const [settings, params] = await Promise.all([
+export default async function Top({
+  searchParams,
+}: {
+  searchParams: Promise<{ preview?: string; draftKey?: string }>
+}) {
+  const [settingsData, params] = await Promise.all([
     getSettings(),
     searchParams,
   ]);
   const isPreview = params.preview === 'natti2026';
+  const draftKey = params.draftKey;
 
-  if (!settings?.isPublished && !isPreview) {
+  if (!settingsData?.isPublished && !isPreview) {
     return (
       <div style={{
         backgroundColor: '#FAF7F2',
@@ -41,9 +47,12 @@ export default async function Top({ searchParams }: { searchParams: Promise<{ pr
     );
   }
 
-  const [drinkItems, foodItems, story, posts, about] = await Promise.all([
+  const { isEnabled } = await draftMode();
+
+  const [drinkItems, foodItems, settings, story, posts, about] = await Promise.all([
     getMenuList('drink'),
     getMenuList('food'),
+    getSettings(isEnabled ? draftKey : undefined),
     getStoryContent(),
     getInstagramPosts(),
     getAboutContent(),
