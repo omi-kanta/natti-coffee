@@ -16,10 +16,12 @@ import { getStoryContent } from "@/lib/story";
 import { getInstagramPosts } from "@/lib/instagram";
 import { getAboutContent } from "@/lib/about";
 
-export default async function Top() {
+export default async function Top({ searchParams }: { searchParams: Promise<{ preview?: string }> }) {
   const settings = await getSettings();
+  const params = await searchParams;
+  const isPreview = params.preview === 'natti2026';
 
-  if (!settings?.isPublished) {
+  if (!settings?.isPublished && !isPreview) {
     return (
       <div style={{
         backgroundColor: '#FAF7F2',
