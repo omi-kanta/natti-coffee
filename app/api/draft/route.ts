@@ -16,27 +16,26 @@ export async function GET(request: Request) {
   d.enable()
 
   // contentIdがある場合はmenuのカテゴリーを判定してリダイレクト
-  if (contentId) {
+if (contentId) {
+    let category: string | undefined
     try {
-      const res = await fetch(
-        `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/menu/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`,
-        {
-          headers: {
-            'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY!,
-          },
-          cache: 'no-store',
-        }
-      )
+      const url = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/menu/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`
+      const res = await fetch(url, {
+        headers: {
+          'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY!,
+        },
+        cache: 'no-store',
+      })
       const data = await res.json()
-      const category = data.category?.[0]
-
-      if (category === 'food') {
-        redirect(`/menu/food/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`)
-      } else if (category === 'drink') {
-        redirect(`/menu/drink/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`)
-      }
+      category = data.category?.[0]
     } catch (e) {
       console.error('preview category fetch error:', e)
+    }
+
+    if (category === 'food') {
+      redirect(`/menu/food/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`)
+    } else if (category === 'drink') {
+      redirect(`/menu/drink/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`)
     }
   }
 
