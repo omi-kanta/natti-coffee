@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "About Us",
   description: "natti coffeeのコンセプト、こだわり、そして私たちの想いについてご紹介します。",
   alternates: {
-    canonical: "https://natticoffee.com/top/about",
+    canonical: "https://natticoffee.com/about",
   },
 };
 

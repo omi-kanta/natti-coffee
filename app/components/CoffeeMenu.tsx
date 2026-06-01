@@ -3,14 +3,15 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import MenuGrid from "./MenuGrid";
 import { MenuItem } from "@/types/menu";
 
-function FoodCard({ item }: { item: MenuItem }) {
+function MenuCard({ item }: { item: MenuItem }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <Link
-      href={`/top/menu/food/${item.id}`}
+      href={`/menu/drink/${item.id}`}
       style={{ textDecoration: "none", color: "inherit", display: "block" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -29,7 +30,7 @@ function FoodCard({ item }: { item: MenuItem }) {
             transition: "transform 0.4s ease",
             borderRadius: "8px",
           }}
-          sizes="25vw"
+          sizes="(max-width: 768px) 50vw, 25vw"
         />
       </div>
       <div className="mt-3 px-1">
@@ -61,10 +62,10 @@ function FoodCard({ item }: { item: MenuItem }) {
   );
 }
 
-export default function FoodMenu({ items }: { items: MenuItem[] }) {
+export default function CoffeeMenu({ items }: { items: MenuItem[] }) {
   return (
     <section
-      id="food-menu"
+      id="drink-menu"
       className="py-16 md:py-20 px-6 md:px-10"
       style={{ scrollMarginTop: '120px' }}
     >
@@ -86,7 +87,7 @@ export default function FoodMenu({ items }: { items: MenuItem[] }) {
               fontFamily: "'Fredoka One', cursive",
             }}
           >
-            FOOD MENU
+            DRINK MENU
           </h2>
           <p
             className="mt-2"
@@ -98,12 +99,15 @@ export default function FoodMenu({ items }: { items: MenuItem[] }) {
               fontWeight: 300,
             }}
           >
-            低糖質・グルテンフリーのフードラインナップ
+            おすすめドリンクを見る
           </p>
         </motion.div>
 
-        {/* 常に4列固定 */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {/* SP: MenuGrid（既存）/ PC: 4列固定 */}
+        <div className="md:hidden">
+          <MenuGrid items={items} renderItem={(item) => <MenuCard item={item} />} />
+        </div>
+        <div className="hidden md:grid md:grid-cols-4 gap-6">
           {items.map((item, i) => (
             <motion.div
               key={item.id}
@@ -112,7 +116,7 @@ export default function FoodMenu({ items }: { items: MenuItem[] }) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <FoodCard item={item} />
+              <MenuCard item={item} />
             </motion.div>
           ))}
         </div>

@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Our Story",
   description: "NATUVIEWの想いを受け継ぎ、新コンセプトカフェnatti coffeeが誕生した背景とストーリーをご紹介します。",
   alternates: {
-    canonical: "https://natticoffee.com/top/story",
+    canonical: "https://natticoffee.com/story",
   },
 };
 

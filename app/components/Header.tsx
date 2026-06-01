@@ -7,8 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag } from "lucide-react";
 
 const navLinks = [
-  { label: "STORY", href: "/top/story" },
-  { label: "ABOUT US", href: "/top/about" },
+  { label: "STORY", href: "/story" },
+  { label: "ABOUT US", href: "/about" },
   {
     label: "MENU",
     subItems: [
@@ -29,7 +29,7 @@ export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const pathname = usePathname();
   const router = useRouter();
-  const isStoryPage = pathname === "/top/story" || pathname === "/top/about" || pathname.startsWith("/top/menu") || pathname.startsWith("/top/privacy");
+  const isStoryPage = pathname === "/story" || pathname === "/about" || pathname.startsWith("/menu") || pathname.startsWith("/privacy");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -47,7 +47,7 @@ export default function Header() {
 
   // 別ページから /top に遷移した後、スクロール先が指定されていれば実行
   useEffect(() => {
-    if (pathname === "/top") {
+    if (pathname === "/") {
       const scrollTo = sessionStorage.getItem("natti_scroll_to");
       if (scrollTo) {
         sessionStorage.removeItem("natti_scroll_to");
@@ -69,7 +69,7 @@ export default function Header() {
       } else {
         // 別ページにいる → フラグを立てて /top へ遷移（ハッシュなし）
         sessionStorage.setItem("natti_scroll_to", href.slice(1));
-        router.push("/top");
+        router.push("/");
       }
     } else if (href.startsWith("/")) {
       router.push(href);
@@ -87,7 +87,7 @@ export default function Header() {
         }}
       >
         {/* Left: Logo (SVG完全再現版) */}
-        <Link href="/top" className="flex items-center gap-3 shrink-0 group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <Link href="/" className="flex items-center gap-3 shrink-0 group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="flex flex-col justify-center">
             <svg
               width="80"

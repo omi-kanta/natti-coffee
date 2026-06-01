@@ -13,5 +13,5 @@ export async function GET(request: Request) {
   const d = await draftMode()
   d.enable()
 
-  redirect(slug || '/top')
+  redirect(slug || '/')
 }

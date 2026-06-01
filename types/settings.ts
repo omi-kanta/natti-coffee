@@ -10,4 +10,5 @@ export type Settings = {
   infoParking?: string
   infoDog?: string
   infoMap?: string
+  isPublished?: boolean
 }

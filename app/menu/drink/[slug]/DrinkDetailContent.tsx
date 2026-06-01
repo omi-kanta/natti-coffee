@@ -18,10 +18,10 @@ const allergenEmoji: Record<string, string> = {
   '落花生': '🥜',
 }
 
-export default function MenuDetailContent({ item }: { item: MenuItem }) {
+export default function DrinkDetailContent({ item }: { item: MenuItem }) {
   const handleBack = () => {
-    sessionStorage.setItem('natti_scroll_to', 'food-menu')
-    window.location.href = '/top'
+    sessionStorage.setItem('natti_scroll_to', 'drink-menu')
+    window.location.href = '/'
   }
 
   const nutritionRows = [

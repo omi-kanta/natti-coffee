@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     follow: false,
   },
   alternates: {
-    canonical: "https://natticoffee.com/top/privacy",
+    canonical: "https://natticoffee.com/privacy",
   },
 };
 

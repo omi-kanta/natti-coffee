@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const pathname = usePathname();
-  const isTop = pathname === "/top";
+  const isTop = pathname === "/";
 
   const linkStyle = {
     color: "rgba(255,255,255,0.75)",
@@ -38,7 +38,7 @@ export default function Footer() {
             {/* Story と About Us を横並び */}
             <div className="flex gap-6 mb-3">
               <Link
-                href="/top/story"
+                href="/story"
                 style={linkStyle}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
@@ -46,7 +46,7 @@ export default function Footer() {
                 Story
               </Link>
               <Link
-                href="/top/about"
+                href="/about"
                 style={linkStyle}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
@@ -57,7 +57,7 @@ export default function Footer() {
             {/* Menu と Information を横並び */}
             <div className="flex gap-6">
               <a
-                href={isTop ? "#food-menu" : "/top#food-menu"}
+                href={isTop ? "#food-menu" : "/#food-menu"}
                 style={linkStyle}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
@@ -65,7 +65,7 @@ export default function Footer() {
                 Menu
               </a>
               <a
-                href={isTop ? "#visit" : "/top#visit"}
+                href={isTop ? "#visit" : "/#visit"}
                 style={linkStyle}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
@@ -131,7 +131,7 @@ export default function Footer() {
             © 2026 natti Coffee
           </p>
           <Link
-            href="/top/privacy"
+            href="/privacy"
             className="text-xs transition-opacity duration-200 opacity-40 hover:opacity-70"
             style={{ color: "#FFFFFF", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300, textDecoration: "none" }}
           >

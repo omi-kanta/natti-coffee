@@ -1,7 +1,7 @@
 'use client';
 
-import Header from '@/app/top/components/Header';
-import Footer from '@/app/top/components/Footer';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 const sections = [
   {
