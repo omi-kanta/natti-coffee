@@ -49,7 +49,7 @@ export default function ThreeCards({ left, center, right }: ThreeCardsProps) {
 
       <div
         style={{
-          maxWidth: '896px',
+          maxWidth: '1200px',
           margin: '0 auto',
           padding: '0 clamp(24px, 5%, 40px)',
           position: 'relative',
@@ -83,7 +83,7 @@ export default function ThreeCards({ left, center, right }: ThreeCardsProps) {
                   style={{
                     width: '100%',
                     height: 'auto',
-                    aspectRatio: '4/3',
+                    aspectRatio: '1/1',
                     objectFit: 'cover',
                     borderRadius: '8px',
                     marginBottom: '16px',
