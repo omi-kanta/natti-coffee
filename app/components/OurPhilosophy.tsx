@@ -138,7 +138,7 @@ export default function OurPhilosophy({
           label="OUR STORY"
           title={storyTitle || "ふわっとした、小さな友だち。"}
           body={storyBody || "nattiのロゴにいる、あの生き物。Be Happyを届けること。"}
-          href="/top/story"
+          href="/story"
           animateX={-30}
           delay={0}
         />
@@ -147,7 +147,7 @@ export default function OurPhilosophy({
           label="ABOUT US"
           title={aboutTitle || "食の歓びと、カラダへの優しさを。"}
           body={aboutBody || "体にやさしく、心に豊かな時間をお届けします。"}
-          href="/top/about"
+          href="/about"
           animateX={30}
           delay={0.15}
         />
