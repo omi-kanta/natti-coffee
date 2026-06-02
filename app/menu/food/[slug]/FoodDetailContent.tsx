@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { ArrowLeft } from 'lucide-react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import type { MenuItem } from '@/types/menu'
@@ -19,11 +18,6 @@ const allergenEmoji: Record<string, string> = {
 }
 
 export default function MenuDetailContent({ item }: { item: MenuItem }) {
-  const handleBack = () => {
-    sessionStorage.setItem('natti_scroll_to', 'food-menu')
-    window.location.href = '/'
-  }
-
   const nutritionRows = [
     { label: 'エネルギー', value: `${item.calories}kcal` },
     { label: 'たんぱく質', value: `${item.protein}g` },
@@ -36,24 +30,24 @@ export default function MenuDetailContent({ item }: { item: MenuItem }) {
     <div className="min-h-screen bg-[#FAF7F2]">
       <Header />
 
-      <div className="max-w-5xl mx-auto px-8 py-10">
-
-        {/* 戻るリンク */}
-        <button
-          onClick={handleBack}
-          className="inline-flex items-center gap-1.5 text-[#2D4A2D] text-sm font-light hover:opacity-60 transition-opacity mb-8"
-          style={{ fontFamily: "'Noto Sans JP', sans-serif", background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+      {/* SP: 商品名（画像の上） */}
+      <div className="md:hidden px-8 pt-10 pb-3">
+        <h1
+          className="text-2xl font-bold text-[#1A1A1A] leading-snug"
+          style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
         >
-          <ArrowLeft size={14} strokeWidth={1.5} />
-          メニュー一覧に戻る
-        </button>
+          {item.name}
+        </h1>
+      </div>
+
+      <div className="max-w-5xl mx-auto md:px-8 md:py-10">
 
         {/* 2カラム */}
-        <div className="flex flex-col md:flex-row items-start gap-14">
+        <div className="flex flex-col md:flex-row items-start md:gap-14">
 
-          {/* 左カラム: 画像 */}
+          {/* 左カラム: 画像（SP: フルワイド・角丸なし / PC: 角丸あり） */}
           <div className="w-full md:w-[580px] shrink-0">
-            <div className="relative w-full rounded-2xl shadow-md overflow-hidden" style={{ height: '520px' }}>
+            <div className="relative w-full md:rounded-2xl md:shadow-md overflow-hidden h-[300px] md:h-[520px]">
               <Image
                 src={item.image.url}
                 alt={item.name}
@@ -65,11 +59,11 @@ export default function MenuDetailContent({ item }: { item: MenuItem }) {
           </div>
 
           {/* 右カラム: テキスト */}
-          <div className="flex-1 min-w-0 pl-4">
+          <div className="flex-1 min-w-0 px-8 pt-6 md:px-0 md:pt-0 md:pl-4">
 
-            {/* 商品名 */}
+            {/* PC専用: 商品名 */}
             <h1
-              className="text-2xl font-bold text-[#1A1A1A] leading-snug mb-3"
+              className="hidden md:block text-2xl font-bold text-[#1A1A1A] leading-snug mb-3"
               style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
             >
               {item.name}
@@ -163,7 +157,7 @@ export default function MenuDetailContent({ item }: { item: MenuItem }) {
         </div>
 
         {/* 栄養成分テーブル */}
-        <div className="mt-10">
+        <div className="mt-10 px-8 pb-10 md:px-0 md:pb-0">
           <p
             className="text-[13px] font-medium text-[#1A1A1A] mb-3"
             style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
