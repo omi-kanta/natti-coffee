@@ -30,7 +30,7 @@ export default function MenuGrid<T>({ items, renderItem }: MenuGridProps<T>) {
   return (
     <>
       {/* SP: 全件 grid-cols-2 */}
-      <div className="grid grid-cols-2 md:hidden gap-3">
+      <div className="grid grid-cols-2 md:hidden gap-6">
         {items.map((item, i) => (
           <motion.div
             key={i}

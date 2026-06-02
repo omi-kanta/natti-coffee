@@ -18,7 +18,7 @@ function MenuCard({ item }: { item: MenuItem }) {
     >
       <div
         className="relative overflow-hidden"
-        style={{ borderRadius: "8px", width: "100%", height: "240px" }}
+        style={{ borderRadius: "8px", width: "100%", aspectRatio: "1/1" }}
       >
         <Image
           src={item.image.url}

@@ -17,7 +17,7 @@ function FoodCard({ item }: { item: MenuItem }) {
     >
       <div
         className="relative overflow-hidden"
-        style={{ borderRadius: "8px", width: "100%", height: "240px" }}
+        style={{ borderRadius: "8px", width: "100%", aspectRatio: "1/1" }}
       >
         <Image
           src={item.image.url}
@@ -103,7 +103,7 @@ export default function FoodMenu({ items }: { items: MenuItem[] }) {
         </motion.div>
 
         {/* 常に4列固定 */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-6">
           {items.map((item, i) => (
             <motion.div
               key={item.id}
