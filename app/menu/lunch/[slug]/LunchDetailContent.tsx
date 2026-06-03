@@ -1,6 +1,6 @@
 import MenuItemDetailContent from '@/components/MenuItemDetailContent'
 import type { MenuItem } from '@/types/menu'
 
-export default function DrinkDetailContent({ item }: { item: MenuItem }) {
+export default function LunchDetailContent({ item }: { item: MenuItem }) {
   return <MenuItemDetailContent item={item} />
 }

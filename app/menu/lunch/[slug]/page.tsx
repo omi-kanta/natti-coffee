@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation'
 import { getMenuItem, getMenuList } from '@/lib/menu'
-import FoodDetailContent from './FoodDetailContent'
+import LunchDetailContent from './LunchDetailContent'
 import { draftMode } from 'next/headers'
 
 export async function generateStaticParams() {
-  const items = await getMenuList('food')
+  const items = await getMenuList('lunch')
   return items.map(item => ({ slug: item.id }))
 }
 
-export default async function MenuDetailPage({
+export default async function LunchDetailPage({
   params,
   searchParams,
 }: {
@@ -22,5 +22,5 @@ export default async function MenuDetailPage({
   const item = await getMenuItem(slug, isEnabled ? draftKey : undefined).catch(() => null)
   if (!item) notFound()
 
-  return <FoodDetailContent item={item} />
+  return <LunchDetailContent item={item} />
 }

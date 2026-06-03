@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import HeroSlider from "./components/HeroSlider";
 import CoffeeMenu from "./components/CoffeeMenu";
 import FoodMenu from "./components/FoodMenu";
+import LunchMenu from "./components/LunchMenu";
 import MenuPdfBanner from "./components/MenuPdfBanner";
 import OurPhilosophy from "./components/OurPhilosophy";
 import Instagram from "./components/Instagram";
@@ -49,9 +50,10 @@ export default async function Top({
 
   const { isEnabled } = await draftMode();
 
-  const [drinkItems, foodItems, settings, story, posts, about] = await Promise.all([
+  const [drinkItems, foodItems, lunchItems, settings, story, posts, about] = await Promise.all([
     getMenuList('drink'),
     getMenuList('food'),
+    getMenuList('lunch'),
     getSettings(isEnabled ? draftKey : undefined),
     getStoryContent(),
     getInstagramPosts(),
@@ -75,6 +77,7 @@ export default async function Top({
           aboutTitle={about?.topTitle}
           aboutBody={about?.topSubTitle}
         />
+        <LunchMenu items={lunchItems} />
         <CoffeeMenu items={drinkItems} />
         <FoodMenu items={foodItems} />
         <MenuPdfBanner menuPdfUrl={settings?.menuPdfUrl} />
