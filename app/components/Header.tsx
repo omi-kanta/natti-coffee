@@ -12,8 +12,9 @@ const navLinks = [
   {
     label: "MENU",
     subItems: [
-      { label: "FOOD", href: "#food-menu" },
+      { label: "LUNCH", href: "#lunch-menu" },
       { label: "DRINK", href: "#drink-menu" },
+      { label: "FOOD", href: "#food-menu" },
     ],
   },
   { label: "INFORMATION", href: "#visit" },
