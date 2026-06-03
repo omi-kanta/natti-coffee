@@ -35,11 +35,6 @@ const allergenEmoji: Record<string, string> = {
   'もも':             '🍑',
 }
 
-const labelStyle: Record<string, string> = {
-  '腸活':         'bg-[#E8F5E9] text-[#2D6A2D]',
-  'グルテンフリー': 'bg-[#FFF8E1] text-[#B8860B]',
-  '砂糖不使用':    'bg-[#F3E5F5] text-[#6A1B9A]',
-}
 
 export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
   return (
@@ -99,7 +94,12 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
                 {item.label.map(l => (
                   <span
                     key={l}
-                    className={`text-[11px] px-3 py-1 rounded-full font-medium ${labelStyle[l] ?? 'bg-gray-100 text-gray-600'}`}
+                    className="text-[13px] font-bold px-4 py-2 rounded-2xl"
+                    style={{
+                      backgroundColor: '#B8D8E8',
+                      color: '#1A1A1A',
+                      fontFamily: "'Noto Sans JP', sans-serif",
+                    }}
                   >
                     {l}
                   </span>
@@ -117,20 +117,6 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
 
             {/* 区切り線 */}
             <hr className="border-t border-[#E5E5E5] mb-4" />
-
-            {/* 使用食材・原材料 */}
-            <p
-              className="text-sm font-medium text-[#1A1A1A] mb-1"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              使用食材・原材料
-            </p>
-            <p
-              className="text-xs text-gray-500 leading-loose mb-4"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
-            >
-              {item.ingredients}
-            </p>
 
             {/* 食物アレルギーカード */}
             <div className="w-full rounded-xl border border-[#2D4A2D]/20 bg-[#FAF7F2] p-4 mb-3">
