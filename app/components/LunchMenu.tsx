@@ -8,7 +8,7 @@ export default function LunchMenu({ items }: { items: MenuItem[] }) {
       sectionId="lunch-menu"
       basePath="/menu/lunch"
       title="LUNCH MENU"
-      subtitle="日替わりランチ・週替わりセットメニュー"
+      subtitle="ランチセットは11:00～14:00までの提供となります。"
     />
   );
 }
