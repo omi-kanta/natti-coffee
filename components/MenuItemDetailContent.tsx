@@ -5,6 +5,8 @@ import Header from '../app/components/Header'
 import Footer from '../app/components/Footer'
 import type { MenuItem } from '@/types/menu'
 
+const SPECIFIC_ALLERGENS = new Set(['卵', '乳', '小麦', 'そば', '落花生（ピーナッツ）', 'えび', 'かに', 'くるみ', 'カシューナッツ'])
+
 const allergenEmoji: Record<string, string> = {
   '卵':               '🥚',
   '乳':               '🥛',
@@ -51,7 +53,7 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
         </h1>
       </div>
 
-      <div className="max-w-5xl mx-auto md:px-8 md:py-10">
+      <div className="max-w-5xl mx-auto md:px-8 md:py-10 mb-3">
 
         {/* 2カラム */}
         <div className="flex flex-col md:flex-row items-start md:gap-14">
@@ -119,46 +121,88 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
             <hr className="border-t border-[#E5E5E5] mb-4" />
 
             {/* 食物アレルギーカード */}
-            <div className="w-full rounded-xl border border-[#2D4A2D]/20 bg-[#FAF7F2] p-4 mb-3">
-              <p
-                className="text-[12px] font-medium text-[#1A1A1A] mb-1"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-              >
-                食物アレルギー情報
-              </p>
-              <p
-                className="text-[11px] text-[#999] mb-3"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-              >
-                商品に含まれる特定原材料 8品目
-              </p>
-              {item.allergens.length > 0 ? (
-                <div className="flex flex-wrap gap-3">
-                  {item.allergens.map(allergen => (
-                    <div key={allergen} className="flex flex-col items-center gap-1">
-                      <div className="w-9 h-9 rounded-full bg-[#2D4A2D] flex items-center justify-center">
-                        <span className="text-base leading-none" role="img" aria-label={allergen}>
-                          {allergenEmoji[allergen] ?? '⚠'}
-                        </span>
-                      </div>
-                      <span
-                        className="text-[10px] text-[#555]"
-                        style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
-                      >
-                        {allergen}
-                      </span>
+            {(() => {
+              const specificAllergens = item.allergens.filter(a => SPECIFIC_ALLERGENS.has(a))
+              const otherAllergens = item.allergens.filter(a => !SPECIFIC_ALLERGENS.has(a))
+              return (
+                <div className="w-full rounded-xl border border-[#2D4A2D]/20 bg-[#FAF7F2] p-4 mb-3">
+                  <p
+                    className="text-[12px] font-medium text-[#1A1A1A] mb-3"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                  >
+                    食物アレルギー情報
+                  </p>
+
+                  {/* 特定原材料 8品目 */}
+                  <p
+                    className="text-[11px] font-medium text-[#555] mb-2"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                  >
+                    特定原材料 9品目
+                  </p>
+                  {specificAllergens.length > 0 ? (
+                    <div className="flex flex-wrap gap-3 mb-4">
+                      {specificAllergens.map(allergen => (
+                        <div key={allergen} className="flex flex-col items-center gap-1">
+                          <div className="w-9 h-9 rounded-full bg-[#2D4A2D] flex items-center justify-center">
+                            <span className="text-base leading-none" role="img" aria-label={allergen}>
+                              {allergenEmoji[allergen] ?? '⚠'}
+                            </span>
+                          </div>
+                          <span
+                            className="text-[10px] text-[#555]"
+                            style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+                          >
+                            {allergen}
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  ) : (
+                    <p
+                      className="text-[12px] text-[#555] mb-4"
+                      style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+                    >
+                      なし
+                    </p>
+                  )}
+
+                  {/* その他のアレルゲン */}
+                  <p
+                    className="text-[11px] font-medium text-[#555] mb-2"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                  >
+                    その他のアレルゲン
+                  </p>
+                  {otherAllergens.length > 0 ? (
+                    <div className="flex flex-wrap gap-3">
+                      {otherAllergens.map(allergen => (
+                        <div key={allergen} className="flex flex-col items-center gap-1">
+                          <div className="w-9 h-9 rounded-full bg-[#6B8F71] flex items-center justify-center">
+                            <span className="text-base leading-none" role="img" aria-label={allergen}>
+                              {allergenEmoji[allergen] ?? '⚠'}
+                            </span>
+                          </div>
+                          <span
+                            className="text-[10px] text-[#555]"
+                            style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+                          >
+                            {allergen}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p
+                      className="text-[12px] text-[#555]"
+                      style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+                    >
+                      なし
+                    </p>
+                  )}
                 </div>
-              ) : (
-                <p
-                  className="text-[12px] text-[#555]"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
-                >
-                  特定原材料は含まれておりません
-                </p>
-              )}
-            </div>
+              )
+            })()}
 
             {/* 注目成分カード */}
             {item.focusNutrient && (
