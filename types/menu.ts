@@ -31,7 +31,7 @@ export type MenuItem = {
   id: string;
   name: string;
   subheading: string;
-  category: 'drink'[] | 'food'[] | 'lunch'[];
+  category: 'drink'[] | 'food'[] | 'lunch'[] | 'dessert'[];
   image: { url: string; width: number; height: number };
   description: string;
   ingredients: string;

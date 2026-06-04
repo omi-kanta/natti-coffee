@@ -2,7 +2,7 @@ import { client } from './microcms';
 import { MenuItem } from '@/types/menu';
 
 // メニュー一覧取得
-export const getMenuList = async (category?: 'drink' | 'food' | 'lunch') => {
+export const getMenuList = async (category?: 'drink' | 'food' | 'lunch' | 'dessert') => {
   try {
     const data = await client.getList<MenuItem>({
       endpoint: 'menu',
