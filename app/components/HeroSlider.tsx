@@ -14,6 +14,7 @@ export default function HeroSlider({ catchcopy }: HeroSliderProps) {
         muted
         loop
         playsInline
+        preload="metadata"
         className="hidden md:block absolute inset-0 w-full h-full object-cover"
       >
         <source src="/hero-pc.mp4" type="video/mp4" />
@@ -25,6 +26,7 @@ export default function HeroSlider({ catchcopy }: HeroSliderProps) {
         muted
         loop
         playsInline
+        preload="metadata"
         className="block md:hidden absolute inset-0 w-full h-full object-cover"
       >
         <source src="/hero-sp.mp4" type="video/mp4" />
@@ -33,7 +35,7 @@ export default function HeroSlider({ catchcopy }: HeroSliderProps) {
       {/* オーバーレイ */}
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
+        style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
       />
 
       {/* テキスト */}
