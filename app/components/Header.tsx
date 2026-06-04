@@ -15,6 +15,7 @@ const navLinks = [
       { label: "LUNCH", href: "#lunch-menu" },
       { label: "DRINK", href: "#drink-menu" },
       { label: "FOOD", href: "#food-menu" },
+      { label: "DESSERT", href: "#dessert-menu" },
     ],
   },
   { label: "INFORMATION", href: "#visit" },

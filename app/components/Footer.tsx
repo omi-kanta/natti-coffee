@@ -80,6 +80,14 @@ export default function Footer() {
               >
                 Food
               </a>
+              <a
+                href={isTop ? "#dessert-menu" : "/#dessert-menu"}
+                style={linkStyle}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+              >
+                Dessert
+              </a>
             </div>
             {/* Information */}
             <div>
