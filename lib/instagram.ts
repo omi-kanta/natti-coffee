@@ -6,6 +6,9 @@ export const getInstagramPosts = async () => {
     const data = await client.getList<InstagramPost>({
       endpoint: 'instagram',
       queries: { limit: 8 },
+      customRequestInit: {
+        next: { revalidate: 60 },
+      },
     })
     return data.contents
   } catch (error) {

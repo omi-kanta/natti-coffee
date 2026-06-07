@@ -6,6 +6,9 @@ export const getStoryContent = async (draftKey?: string) => {
     const data = await client.get<StoryContent>({
       endpoint: 'story',
       queries: draftKey ? { draftKey } : undefined,
+      customRequestInit: {
+        next: { revalidate: 60 },
+      },
     })
     return data
   } catch (error) {

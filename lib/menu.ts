@@ -10,6 +10,9 @@ export const getMenuList = async (category?: 'drink' | 'food' | 'lunch' | 'desse
         filters: category ? `category[contains]${category}` : undefined,
         limit: 100,
       },
+      customRequestInit: {
+        next: { revalidate: 60 },
+      },
     });
     return data.contents;
   } catch (error) {

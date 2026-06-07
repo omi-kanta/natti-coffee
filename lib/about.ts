@@ -6,6 +6,9 @@ export const getAboutContent = async (draftKey?: string) => {
     const data = await client.get<AboutContent>({
       endpoint: 'aboutus',
       queries: draftKey ? { draftKey } : undefined,
+      customRequestInit: {
+        next: { revalidate: 60 },
+      },
     })
     return data
   } catch (error) {
