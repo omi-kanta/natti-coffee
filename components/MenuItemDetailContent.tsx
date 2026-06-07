@@ -74,22 +74,6 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
           {/* 右カラム: テキスト */}
           <div className="flex-1 min-w-0 px-8 pt-6 md:px-0 md:pt-0 md:pl-4">
 
-            {/* PC専用: 商品名 */}
-            <h1
-              className="hidden md:block text-2xl font-bold text-[#1A1A1A] leading-snug mb-3"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              {item.name}
-            </h1>
-
-            {/* 価格 */}
-            <p
-              className="text-sm text-[#1A1A1A] mb-3"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              ¥{item.price.toLocaleString()}（税込）
-            </p>
-
             {/* ラベル */}
             {item.label && item.label.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
@@ -108,6 +92,22 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
                 ))}
               </div>
             )}
+            {/* PC専用: 商品名 */}
+            <h1
+              className="hidden md:block text-2xl font-bold text-[#1A1A1A] leading-snug mb-3"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              {item.name}
+            </h1>
+
+            {/* 価格 */}
+            <p
+              className="text-sm text-[#1A1A1A] mb-3"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              ¥{item.price.toLocaleString()}（税込）
+            </p>
+
 
             {/* 説明文 */}
             <p
