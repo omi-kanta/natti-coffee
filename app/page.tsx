@@ -10,6 +10,7 @@ import MenuPdfBanner from "./components/MenuPdfBanner";
 import OurPhilosophy from "./components/OurPhilosophy";
 import Instagram from "./components/Instagram";
 import NatuviewSection from "./components/NatuviewSection";
+import ConceptSection from "./components/ConceptSection";
 import VisitUs from "./components/VisitUs";
 import Footer from "./components/Footer";
 import { getMenuList } from "@/lib/menu";
@@ -78,6 +79,10 @@ export default async function Top({
           aboutImage={about?.topImage?.url}
           aboutTitle={about?.topTitle}
           aboutBody={about?.topSubTitle}
+        />
+        <ConceptSection
+          text={settings?.conceptText}
+          image={settings?.conceptImage?.url}
         />
         <LunchMenu items={lunchItems} />
         <CoffeeMenu items={drinkItems} />

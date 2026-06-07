@@ -14,4 +14,6 @@ export type Settings = {
   natuviewTitle?: string
   natuviewText?: string
   natuviewImage?: { url: string; width: number; height: number }
+  conceptText?: string
+  conceptImage?: { url: string; width: number; height: number }
 }
