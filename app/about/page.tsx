@@ -1,8 +1,30 @@
+import type { Metadata } from 'next'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AboutPageContent from './AboutPageContent';
 import { getAboutContent } from '@/lib/about';
 import { draftMode } from 'next/headers';
+
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: '食の歓びと、カラダへの優しさを。natti coffee のこだわりと想いをご紹介します。',
+  openGraph: {
+    title: 'About Us | natti coffee',
+    description: '食の歓びと、カラダへの優しさを。natti coffee のこだわりと想いをご紹介します。',
+    url: 'https://natticoffee.com/about',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'natti coffee about',
+      },
+    ],
+  },
+  alternates: {
+    canonical: '/about',
+  },
+}
 
 export default async function About1Page({
   searchParams,

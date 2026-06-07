@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Header from '../components/Header';
 import Hero from './components/Hero';
 import MainCopy from './components/MainCopy';
@@ -6,6 +7,27 @@ import Closing from './components/Closing';
 import Footer from '../components/Footer';
 import { getStoryContent } from '@/lib/story';
 import { draftMode } from 'next/headers';
+
+export const metadata: Metadata = {
+  title: 'Story',
+  description: 'natti coffee の想い。発酵玄米や野菜、体にやさしい食を通じて、Be Happy をお届けします。',
+  openGraph: {
+    title: 'Story | natti coffee',
+    description: 'natti coffee の想い。発酵玄米や野菜、体にやさしい食を通じて、Be Happy をお届けします。',
+    url: 'https://natticoffee.com/story',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'natti coffee story',
+      },
+    ],
+  },
+  alternates: {
+    canonical: '/story',
+  },
+}
 
 export default async function StoryPage({
   searchParams,

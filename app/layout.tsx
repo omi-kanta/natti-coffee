@@ -6,8 +6,8 @@ export const metadata: Metadata = {
     default: "natti coffee | ジョンソンタウンにある本格コーヒー",
     template: "%s | natti coffee",
   },
-  description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。愛犬と一緒にお越しいただけるテラス席あり。",
-  keywords: ["natti coffee", "ナッティコーヒー", "入間市", "ジョンソンタウン", "カフェ", "自家焙煎", "グルテンフリー", "ペット可"],
+  description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。愛犬・わんちゃんと一緒にお越しいただけるテラス席あり。犬連れ歓迎のドッグフレンドリーカフェです。",
+  keywords: ["natti coffee", "ナッティコーヒー", "入間市", "ジョンソンタウン", "カフェ", "自家焙煎", "グルテンフリー", "ペット可", "犬連れ", "愛犬", "ドッグカフェ", "テラス席", "ペットOK", "わんちゃん連れ", "犬と行けるカフェ", "入間市ドッグカフェ"],
   authors: [{ name: "natti coffee" }],
   creator: "natti coffee",
   metadataBase: new URL("https://natticoffee.com"),
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://natticoffee.com",
     siteName: "natti coffee",
     title: "natti coffee | ジョンソンタウンにある本格コーヒー",
-    description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。愛犬と一緒にお越しいただけるテラス席あり。",
+    description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。愛犬・わんちゃんと一緒にお越しいただけるテラス席あり。犬連れ歓迎のドッグフレンドリーカフェです。",
     images: [
       {
         url: "/og-image.jpg",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "natti coffee | ジョンソンタウンにある本格コーヒー",
-    description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。",
+    description: "埼玉県入間市ジョンソンタウンにある本格カフェ。自家焙煎コーヒー、低糖質・グルテンフリーのスイーツ、発芽発酵玄米おはぎをご提供。愛犬・わんちゃんと一緒にお越しいただけるテラス席あり。犬連れ歓迎のドッグフレンドリーカフェです。",
     images: ["/og-image.jpg"],
   },
   robots: {
