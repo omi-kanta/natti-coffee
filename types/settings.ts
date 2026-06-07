@@ -11,4 +11,7 @@ export type Settings = {
   infoDog?: string
   infoMap?: string
   isPublished?: boolean
+  natuviewTitle?: string
+  natuviewText?: string
+  natuviewImage?: { url: string; width: number; height: number }
 }

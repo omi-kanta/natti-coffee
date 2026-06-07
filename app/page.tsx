@@ -16,7 +16,7 @@ import { getMenuList } from "@/lib/menu";
 import { getSettings } from "@/lib/settings";
 import { getStoryContent } from "@/lib/story";
 import { getInstagramPosts } from "@/lib/instagram";
-import { getAboutContent } from "@/lib/about";
+import { getAboutContent } from "@/lib/about"
 import { draftMode } from "next/headers";
 
 export default async function Top({
@@ -85,7 +85,11 @@ export default async function Top({
         <DessertMenu items={dessertItems} />
         <MenuPdfBanner menuPdfUrl={settings?.menuPdfUrl} />
         <Instagram posts={posts} />
-        <NatuviewSection />
+        <NatuviewSection
+          title={settings?.natuviewTitle}
+          text={settings?.natuviewText}
+          image={settings?.natuviewImage?.url}
+        />
         <VisitUs
           address={settings?.infoAddress}
           tel={settings?.infoTel}

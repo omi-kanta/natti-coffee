@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import NatuviewSection from '../components/NatuviewSection';
 
 type Props = {
   heroHeading?: string
@@ -316,98 +317,7 @@ export default function AboutPageContent({
       )}
 
       {/* ⑥ NATUVIEWへの導線 */}
-      <section
-        className="py-20 px-6 md:px-10"
-        style={{ backgroundColor: '#FAF7F2' }}
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
-            {/* 左: 画像 */}
-            <div
-              className="w-full md:w-1/2 overflow-hidden"
-              style={{ aspectRatio: '4 / 3', borderRadius: '8px', position: 'relative' }}
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1464979681340-bdd28a61699e?w=800&q=80"
-                alt="NATUVIEW online shop"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-
-            {/* 右: テキスト */}
-            <motion.div
-              className="w-full md:w-1/2"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeUp}
-            >
-              <p
-                style={{
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  letterSpacing: '0.2em',
-                  color: '#2D4A2D',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Josefin Sans', sans-serif",
-                  marginBottom: '16px',
-                }}
-              >
-                ONLINE SHOP
-              </p>
-              <h2
-                style={{
-                  fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)',
-                  fontWeight: 700,
-                  color: '#1A1A1A',
-                  fontFamily: "'Josefin Sans', sans-serif",
-                  lineHeight: 1.4,
-                  marginBottom: '20px',
-                }}
-              >
-                NATUVIEWでは、同じこだわりをご自宅でも。
-              </h2>
-              <p
-                style={{
-                  fontSize: '14px',
-                  lineHeight: 2,
-                  color: '#1A1A1A',
-                  opacity: 0.7,
-                  fontFamily: "'Noto Sans JP', sans-serif",
-                  fontWeight: 300,
-                  marginBottom: '28px',
-                }}
-              >
-                カフェと同じケト理論・厳選素材で作られた
-                <br />
-                低糖質・グルテンフリーのスイーツを
-                <br />
-                オンラインショップでお届けしています。
-              </p>
-              <a
-                href="https://www.natuview.jp/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: '#2D4A2D',
-                  fontSize: '14px',
-                  fontFamily: "'Noto Sans JP', sans-serif",
-                  fontWeight: 400,
-                  textDecoration: 'underline',
-                  textUnderlineOffset: '4px',
-                  transition: 'opacity 0.2s ease',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.65')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-              >
-                NATUVIEWをのぞいてみる →
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <NatuviewSection/>
     </>
   );
 }
