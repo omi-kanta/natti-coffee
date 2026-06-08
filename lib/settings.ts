@@ -16,3 +16,18 @@ export const getSettings = async (draftKey?: string) => {
     return null
   }
 }
+
+export const getSettingsNoCache = async () => {
+  try {
+    const data = await client.get<Settings>({
+      endpoint: 'settings',
+      customRequestInit: {
+        cache: 'no-store',
+      },
+    })
+    return data
+  } catch (error) {
+    console.error('settings fetch error:', error)
+    return null
+  }
+}

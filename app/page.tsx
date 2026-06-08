@@ -14,7 +14,7 @@ import ConceptSection from "./components/ConceptSection";
 import VisitUs from "./components/VisitUs";
 import Footer from "./components/Footer";
 import { getMenuList } from "@/lib/menu";
-import { getSettings } from "@/lib/settings";
+import { getSettings, getSettingsNoCache } from "@/lib/settings";
 import { getStoryContent } from "@/lib/story";
 import { getInstagramPosts } from "@/lib/instagram";
 import { getAboutContent } from "@/lib/about"
@@ -25,12 +25,11 @@ export default async function Top({
 }: {
   searchParams: Promise<{ preview?: string; draftKey?: string }>
 }) {
-  const [settingsData, params] = await Promise.all([
-    getSettings(),
-    searchParams,
-  ]);
+  const params = await searchParams;
   const isPreview = params.preview === 'natti2026';
   const draftKey = params.draftKey;
+
+  const settingsData = await getSettingsNoCache();
 
   if (!settingsData?.isPublished && !isPreview) {
     return (
