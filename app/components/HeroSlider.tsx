@@ -35,7 +35,7 @@ export default function HeroSlider({ catchcopy }: HeroSliderProps) {
       {/* オーバーレイ */}
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
+        // style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
       />
 
       {/* テキスト */}
