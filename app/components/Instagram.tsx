@@ -125,7 +125,7 @@ export default function Instagram({ posts }: Props) {
 
       {/* ウォールグリッド（gap-0、フルブリード） */}
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-4"
+        className="grid grid-cols-3 md:grid-cols-4 gap-0.5"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -138,13 +138,13 @@ export default function Instagram({ posts }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="relative block overflow-hidden group"
-              style={{ aspectRatio: "1/1" }}
+              style={{ aspectRatio: "4/5" }}
             >
               <Image
                 src={post.image.url}
                 alt={`Instagram photo ${i + 1}`}
                 fill
-                sizes="(max-width: 768px) 50vw, 25vw"
+                sizes="(max-width: 768px) 33vw, 25vw"
                 style={{ objectFit: "cover" }}
                 className="transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               />
