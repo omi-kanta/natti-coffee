@@ -134,7 +134,7 @@ export default function Footer() {
                 </svg>
               </a>
               {/* LINE */}
-              <a href="https://line.me/" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity" aria-label="LINE">
+              <a href="https://line.me/R/ti/p/@926wxvfc?ts=06091726&oat_content=url" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity" aria-label="LINE">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                   <path d="M12 5.5C7.86 5.5 4.5 8.18 4.5 11.5c0 2.1 1.3 3.95 3.3 5.05L7 19l2.5-1.3c.8.2 1.63.3 2.5.3 4.14 0 7.5-2.68 7.5-6S16.14 5.5 12 5.5z" />

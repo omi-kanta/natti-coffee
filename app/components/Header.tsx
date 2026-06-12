@@ -434,7 +434,7 @@ export default function Header() {
               </a>
               {/* LINE */}
               <a
-                href="https://line.me/"
+                href="https://line.me/R/ti/p/@926wxvfc?ts=06091726&oat_content=url"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LINE"
