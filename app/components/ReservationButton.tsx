@@ -1,8 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLoading } from "./LoadingContext";
 
 export default function ReservationButton() {
+  const { loaderShowing } = useLoading();
+
+  if (loaderShowing) return null;
+
   return (
     <motion.a
       href="https://app.squareup.com/appointments/book/8lmd4dlezyia9h/L8E7R932PDW8K/start"

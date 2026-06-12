@@ -21,7 +21,7 @@ export default function Loader({ onFinish }: LoaderProps) {
       {visible && (
         <motion.div
           className="fixed inset-0 flex flex-col items-center justify-center overflow-hidden"
-          style={{ backgroundColor: '#FAF7F2', zIndex: 9999 }}
+          style={{ backgroundColor: '#FAF7F2', zIndex: 10000 }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
