@@ -13,6 +13,7 @@ import NatuviewSection from "./components/NatuviewSection";
 import ConceptSection from "./components/ConceptSection";
 import VisitUs from "./components/VisitUs";
 import Footer from "./components/Footer";
+import TopMessageSection from "./components/TopMessageSection";
 import { getMenuList } from "@/lib/menu";
 import { getSettings, getSettingsNoCache } from "@/lib/settings";
 import { getStoryContent } from "@/lib/story";
@@ -71,6 +72,10 @@ export default async function Top({
         />
         <Header />
         <HeroSlider catchcopy={settings?.catchCopy} />
+        <TopMessageSection
+          topTitle={settings?.topTitle}
+          topText={settings?.topText}
+        />
         <OurPhilosophy
           storyImage={story?.topImage?.url}
           storyTitle={story?.topTitle}
