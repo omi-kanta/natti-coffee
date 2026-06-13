@@ -8,7 +8,7 @@ export default function LunchMenu({ items }: { items: MenuItem[] }) {
       sectionId="lunch-menu"
       basePath="/menu/lunch"
       title="LUNCH MENU"
-      subtitle="ランチセットは11:00～14:00までの提供となります。"
+      subtitle="スープ・デザート・選べる2ドリンク付き"
     />
   );
 }
