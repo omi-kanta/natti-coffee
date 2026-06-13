@@ -18,7 +18,7 @@ export default function TopMessageSection({ topTitle, topText }: Props) {
           <h2
             className="text-3xl md:text-4xl font-normal whitespace-pre-line leading-relaxed"
             style={{
-              fontFamily: "'Shippori Mincho', serif",
+              fontFamily: 'system-ui, -apple-system, sans-serif',
               color: "#1A1A1A",
               letterSpacing: "0.08em",
             }}
@@ -30,7 +30,7 @@ export default function TopMessageSection({ topTitle, topText }: Props) {
           <p
             className="text-sm leading-loose whitespace-pre-line"
             style={{
-              fontFamily: "'Noto Sans JP', sans-serif",
+              fontFamily: 'system-ui, -apple-system, sans-serif',
               color: "#6b6055",
               letterSpacing: "0.05em",
             }}
