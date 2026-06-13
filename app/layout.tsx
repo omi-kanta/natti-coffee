@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ReservationButton from "./components/ReservationButton";
 import { LoadingProvider } from "./components/LoadingContext";
+import { MenuProvider } from "./components/MenuContext";
 
 export const metadata: Metadata = {
   title: {
@@ -69,10 +70,12 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Kurenaido&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-full flex flex-col">
-        <LoadingProvider>
-          {children}
-          <ReservationButton />
-        </LoadingProvider>
+        <MenuProvider>
+          <LoadingProvider>
+            {children}
+            <ReservationButton />
+          </LoadingProvider>
+        </MenuProvider>
       </body>
     </html>
   );

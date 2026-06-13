@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag } from "lucide-react";
+import { useMenu } from "./MenuContext";
 
 const navLinks = [
   { label: "STORY", href: "/story" },
@@ -27,7 +28,7 @@ const BRAND_GREEN = "#1D3D1D";
 const BRAND_RED = "#FF5A5A";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { menuOpen, setMenuOpen } = useMenu();
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const pathname = usePathname();
   const router = useRouter();

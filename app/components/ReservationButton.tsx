@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useLoading } from "./LoadingContext";
+import { useMenu } from "./MenuContext";
 
 export default function ReservationButton() {
   const { loaderShowing } = useLoading();
+  const { menuOpen } = useMenu();
 
-  if (loaderShowing) return null;
+  if (loaderShowing || menuOpen) return null;
 
   return (
     <motion.a
