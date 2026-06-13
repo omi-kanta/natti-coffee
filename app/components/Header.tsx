@@ -302,7 +302,7 @@ export default function Header() {
           </a>
           <button
             className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center"
-            onClick={() => setMenuOpen((v) => !v)}
+            onClick={() => setMenuOpen(!menuOpen)}
             aria-label="menu"
           >
             <span className="block h-px w-5 transition-all duration-300" style={{ backgroundColor: "#1A1A1A" }} />
