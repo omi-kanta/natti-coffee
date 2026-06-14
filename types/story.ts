@@ -8,7 +8,6 @@ export type StoryContent = {
   storyImage?: { url: string; width: number; height: number }
   storyHeading?: string
   storyDescription?: string
-  storySubImage?: { url: string; width: number; height: number }
 
   // ストーリーカード（3枚）
   storyCardImage1?: { url: string; width: number; height: number }
