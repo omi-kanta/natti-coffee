@@ -98,7 +98,13 @@ export default function MainCopy({ image, heading, description }: MainCopyProps)
             <>
               <div
                 className="md:hidden"
-                style={{ position: 'relative', width: '100%', height: '280px', overflow: 'hidden' }}
+                style={{
+                  position: 'relative',
+                  width: '100vw',
+                  marginLeft: 'calc(-1 * clamp(24px, 5vw, 80px))',
+                  height: '280px',
+                  overflow: 'hidden',
+                }}
               >
                 <Image
                   src={image}
