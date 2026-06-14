@@ -3,11 +3,13 @@
 import Image from 'next/image';
 import { motion, type Variants } from 'framer-motion';
 import Cloud from './Cloud';
+import StoryCardModal from './StoryCardModal';
 
 type CardData = {
   image?: string
   title?: string
   text?: string
+  detailedImage?: { url: string; width: number; height: number }
 }
 
 type ThreeCardsProps = {
@@ -28,9 +30,9 @@ const cardVariants: Variants = {
 
 export default function ThreeCards({ left, center, right }: ThreeCardsProps) {
   const cards = [
-    { title: left?.title, imageSrc: left?.image, body: left?.text },
-    { title: center?.title, imageSrc: center?.image, body: center?.text },
-    { title: right?.title, imageSrc: right?.image, body: right?.text },
+    { title: left?.title, imageSrc: left?.image, body: left?.text, detailedImage: left?.detailedImage },
+    { title: center?.title, imageSrc: center?.image, body: center?.text, detailedImage: center?.detailedImage },
+    { title: right?.title, imageSrc: right?.image, body: right?.text, detailedImage: right?.detailedImage },
   ];
 
   return (
@@ -117,6 +119,9 @@ export default function ThreeCards({ left, center, right }: ThreeCardsProps) {
                 >
                   {card.body}
                 </p>
+              )}
+              {card.detailedImage && (
+                <StoryCardModal detailedImage={card.detailedImage} />
               )}
             </motion.div>
           ))}

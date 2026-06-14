@@ -54,16 +54,19 @@ export default async function StoryPage({
           image: story?.storyCardImage1?.url,
           title: story?.storyCardTitle1,
           text: story?.storyCardText1,
+          detailedImage: story?.storyCardDetailed1,
         }}
         center={{
           image: story?.storyCardImage2?.url,
           title: story?.storyCardTitle2,
           text: story?.storyCardText2,
+          detailedImage: story?.storyCardDetailed2,
         }}
         right={{
           image: story?.storyCardImage3?.url,
           title: story?.storyCardTitle3,
           text: story?.storyCardText3,
+          detailedImage: story?.storyCardDetailed3,
         }}
       />
       <Closing
