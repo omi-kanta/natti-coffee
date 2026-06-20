@@ -101,7 +101,7 @@ export default function StoryCardModal({ detailedImage, buttonLabel }: Props) {
               height={detailedImage.height}
               className="
                 w-auto h-auto object-contain rounded-lg block
-                max-w-[100vw] max-h-[110vh]
+                max-w-[100vw] max-h-[130vh]
                 md:max-w-[100vw] md:max-h-[95vh]
               "
             />
