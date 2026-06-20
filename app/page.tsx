@@ -30,9 +30,10 @@ export default async function Top({
   const isPreview = params.preview === 'natti2026';
   const draftKey = params.draftKey;
 
+  const { isEnabled } = await draftMode();
   const settingsData = await getSettingsNoCache();
 
-  if (!settingsData?.isPublished && !isPreview) {
+  if (!settingsData?.isPublished && !isPreview && !isEnabled) {
     return (
       <div style={{
         backgroundColor: '#FAF7F2',
@@ -49,8 +50,6 @@ export default async function Top({
       </div>
     );
   }
-
-  const { isEnabled } = await draftMode();
 
   const [drinkItems, foodItems, lunchItems, dessertItems, settings, story, posts, about] = await Promise.all([
     getMenuList('drink'),

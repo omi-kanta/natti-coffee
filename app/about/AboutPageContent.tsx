@@ -8,8 +8,8 @@ type Props = {
   heroHeading?: string
   heroSubHeading?: string
   aboutImage?: string
+  aboutImage2?: string
   text1?: string
-  text2?: string
   block0Title?: string
   block0Body?: string
   block0Image?: string
@@ -28,8 +28,8 @@ export default function AboutPageContent({
   heroHeading,
   heroSubHeading,
   aboutImage,
+  aboutImage2,
   text1,
-  text2,
   block0Title,
   block0Body,
   block0Image,
@@ -38,10 +38,7 @@ export default function AboutPageContent({
   block1Image,
   closingText,
 }: Props) {
-  const leadParagraphs = [
-    text1 ? text1.split('\n') : [],
-    text2 ? text2.split('\n') : [],
-  ].filter((para) => para.length > 0);
+  const leadParagraphs = text1 ? text1.split('\n') : [];
 
   const blocks = [
     { title: block0Title, body: block0Body, image: block0Image, imageAlt: 'natti coffee', reverse: false },
@@ -122,7 +119,7 @@ export default function AboutPageContent({
       )}
 
       {/* ③ リード文 */}
-      {leadParagraphs.length > 0 && (
+      {(leadParagraphs.length > 0 || aboutImage2) && (
         <section
           style={{
             backgroundColor: '#FAF7F2',
@@ -138,48 +135,52 @@ export default function AboutPageContent({
               textAlign: 'center',
             }}
           >
-            {leadParagraphs.map((para, i) => (
-              <div key={i}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  variants={fadeUp}
-                >
-                  {para.map((line, j) => (
-                    <p
-                      key={j}
-                      style={{
-                        fontFamily: 'system-ui, -apple-system, sans-serif',
-                        color: '#3D3D3D',
-                        fontSize: 'clamp(15px, 2.2vw, 20px)',
-                        lineHeight: 2.2,
-                        margin: 0,
-                      }}
-                    >
-                      {line}
-                    </p>
-                  ))}
-                </motion.div>
-                {i < leadParagraphs.length - 1 && (
-                  <div
+            {leadParagraphs.length > 0 && (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeUp}
+              >
+                {leadParagraphs.map((line, j) => (
+                  <p
+                    key={j}
                     style={{
-                      margin: '36px 0',
-                      display: 'flex',
-                      justifyContent: 'center',
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      color: '#3D3D3D',
+                      fontSize: 'clamp(15px, 2.2vw, 20px)',
+                      lineHeight: 2.2,
+                      margin: 0,
                     }}
                   >
-                    <Image
-                      src="/natti_logo.png"
-                      alt=""
-                      width={24}
-                      height={24}
-                      style={{ objectFit: 'contain', opacity: 0.35 }}
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
+                    {line}
+                  </p>
+                ))}
+              </motion.div>
+            )}
+            {aboutImage2 && (
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeUp}
+                style={{ marginTop: '36px' }}
+              >
+                <Image
+                  src={aboutImage2}
+                  alt="natti coffee"
+                  width={1200}
+                  height={630}
+                  sizes="(max-width: 768px) 100vw, 672px"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    borderRadius: '12px',
+                  }}
+                />
+              </motion.div>
+            )}
           </div>
         </section>
       )}

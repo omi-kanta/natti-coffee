@@ -43,7 +43,7 @@ export default async function About1Page({
         heroSubHeading={about?.aboutSubHeading}
         aboutImage={about?.aboutImage?.url}
         text1={about?.aboutText1}
-        text2={about?.aboutText2}
+        aboutImage2={about?.aboutImage2?.url}
         block0Title={about?.aboutLeftTitle}
         block0Body={about?.aboutLeftText}
         block0Image={about?.aboutRightImage?.url}

@@ -8,8 +8,8 @@ export type AboutContent = {
   aboutHeading?: string
   aboutSubHeading?: string
   aboutImage?: { url: string; width: number; height: number }
+  aboutImage2?: { url: string; width: number; height: number }
   aboutText1?: string
-  aboutText2?: string
 
   // 左セクション
   aboutLeftTitle?: string
