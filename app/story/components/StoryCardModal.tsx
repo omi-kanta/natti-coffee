@@ -7,9 +7,10 @@ import { useModal } from '@/app/components/ModalContext';
 
 type Props = {
   detailedImage: { url: string; width: number; height: number };
+  buttonLabel?: string;
 };
 
-export default function StoryCardModal({ detailedImage }: Props) {
+export default function StoryCardModal({ detailedImage, buttonLabel }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const { setIsModalOpen } = useModal();
 
@@ -54,7 +55,7 @@ export default function StoryCardModal({ detailedImage }: Props) {
           letterSpacing: '0.05em',
         }}
       >
-        詳細を見る
+        {buttonLabel || '詳細を見る'}
       </button>
 
       {isOpen && createPortal(
@@ -98,15 +99,11 @@ export default function StoryCardModal({ detailedImage }: Props) {
               alt=""
               width={detailedImage.width}
               height={detailedImage.height}
-              style={{
-                maxWidth: '100vw',
-                maxHeight: '95vh',
-                width: 'auto',
-                height: 'auto',
-                objectFit: 'contain',
-                borderRadius: '8px',
-                display: 'block',
-              }}
+              className="
+                w-auto h-auto object-contain rounded-lg block
+                max-w-[100vw] max-h-[110vh]
+                md:max-w-[100vw] md:max-h-[95vh]
+              "
             />
           </div>
         </div>,

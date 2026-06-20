@@ -25,6 +25,11 @@ export type StoryContent = {
   storyCardDetailed2?: { url: string; width: number; height: number }
   storyCardDetailed3?: { url: string; width: number; height: number }
 
+  // ストーリーカードボタン文言
+  storyCardButton1?: string
+  storyCardButton2?: string
+  storyCardButton3?: string
+
   // ストーリー末尾
   storyEndingText?: string
   storyEndingSubText?: string
