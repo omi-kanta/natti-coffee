@@ -16,7 +16,7 @@ export default function TopMessageSection({ topTitle, topText }: Props) {
       <div className="max-w-2xl mx-auto flex flex-col items-center gap-6">
         {topTitle && (
           <h2
-            className="text-3xl md:text-4xl font-normal whitespace-pre-line leading-relaxed"
+            className="text-2xl md:text-4xl font-normal whitespace-pre-line leading-relaxed"
             style={{
               fontFamily: 'system-ui, -apple-system, sans-serif',
               color: "#1A1A1A",
@@ -28,7 +28,7 @@ export default function TopMessageSection({ topTitle, topText }: Props) {
         )}
         {topText && (
           <p
-            className="text-sm leading-loose whitespace-pre-line"
+            className="text-[11px] md:text-sm leading-loose whitespace-pre-line"
             style={{
               fontFamily: 'system-ui, -apple-system, sans-serif',
               color: "#6b6055",
