@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { useLoading } from "./LoadingContext";
 import { useMenu } from "./MenuContext";
+import { useModal } from "./ModalContext";
 
 export default function ReservationButton() {
   const { loaderShowing } = useLoading();
   const { menuOpen } = useMenu();
+  const { isModalOpen } = useModal();
 
-  if (loaderShowing || menuOpen) return null;
+  if (loaderShowing || menuOpen || isModalOpen) return null;
 
   return (
     <motion.a

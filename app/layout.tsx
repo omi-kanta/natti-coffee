@@ -3,6 +3,7 @@ import "./globals.css";
 import ReservationButton from "./components/ReservationButton";
 import { LoadingProvider } from "./components/LoadingContext";
 import { MenuProvider } from "./components/MenuContext";
+import { ModalProvider } from "./components/ModalContext";
 
 export const metadata: Metadata = {
   title: {
@@ -72,8 +73,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <MenuProvider>
           <LoadingProvider>
-            {children}
-            <ReservationButton />
+            <ModalProvider>
+              {children}
+              <ReservationButton />
+            </ModalProvider>
           </LoadingProvider>
         </MenuProvider>
       </body>

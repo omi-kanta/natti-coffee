@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import { useModal } from '@/app/components/ModalContext';
 
 type Props = {
   detailedImage: { url: string; width: number; height: number };
@@ -10,6 +11,7 @@ type Props = {
 
 export default function StoryCardModal({ detailedImage }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const { setIsModalOpen } = useModal();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -23,13 +25,16 @@ export default function StoryCardModal({ detailedImage }: Props) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setIsModalOpen(true);
     } else {
       document.body.style.overflow = '';
+      setIsModalOpen(false);
     }
     return () => {
       document.body.style.overflow = '';
+      setIsModalOpen(false);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsModalOpen]);
 
   return (
     <>
