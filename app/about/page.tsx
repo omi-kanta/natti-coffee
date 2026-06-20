@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AboutPageContent from './AboutPageContent';
 import { getAboutContent } from '@/lib/about';
+import { getMenuList } from '@/lib/menu';
 import { draftMode } from 'next/headers';
 
 export const metadata: Metadata = {
@@ -33,11 +34,22 @@ export default async function About1Page({
 }) {
   const { draftKey } = await searchParams;
   const { isEnabled } = await draftMode();
-  const about = await getAboutContent(isEnabled ? draftKey : undefined);
+  const [about, drinkItems, foodItems, lunchItems, dessertItems] = await Promise.all([
+    getAboutContent(isEnabled ? draftKey : undefined),
+    getMenuList('drink'),
+    getMenuList('food'),
+    getMenuList('lunch'),
+    getMenuList('dessert'),
+  ]);
 
   return (
     <main style={{ backgroundColor: '#FAF7F2' }}>
-      <Header />
+      <Header
+          hasLunch={lunchItems.length > 0}
+          hasDrink={drinkItems.length > 0}
+          hasFood={foodItems.length > 0}
+          hasDessert={dessertItems.length > 0}
+        />
       <AboutPageContent
         heroHeading={about?.aboutHeading}
         heroSubHeading={about?.aboutSubHeading}
@@ -52,7 +64,12 @@ export default async function About1Page({
         block1Image={about?.aboutLeftImage?.url}
         closingText={about?.aboutEndingText}
       />
-      <Footer />
+      <Footer
+          hasLunch={lunchItems.length > 0}
+          hasDrink={drinkItems.length > 0}
+          hasFood={foodItems.length > 0}
+          hasDessert={dessertItems.length > 0}
+        />
     </main>
   );
 }

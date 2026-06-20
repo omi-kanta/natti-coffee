@@ -7,29 +7,42 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag } from "lucide-react";
 import { useMenu } from "./MenuContext";
 
-const navLinks = [
-  { label: "STORY", href: "/story" },
-  { label: "ABOUT US", href: "/about" },
-  {
-    label: "MENU",
-    subItems: [
-      { label: "LUNCH", href: "#lunch-menu" },
-      { label: "DRINK", href: "#drink-menu" },
-      { label: "FOOD", href: "#food-menu" },
-      { label: "DESSERT", href: "#dessert-menu" },
-    ],
-  },
-  { label: "INFORMATION", href: "#visit" },
-  { label: "ONLINE SHOP", href: "https://www.natuview.jp/", external: true },
-];
-
 // ブランドカラーの定義
 const BRAND_GREEN = "#1D3D1D";
 const BRAND_RED = "#FF5A5A";
 
-export default function Header() {
+type Props = {
+  hasLunch?: boolean;
+  hasDrink?: boolean;
+  hasFood?: boolean;
+  hasDessert?: boolean;
+};
+
+export default function Header({
+  hasLunch = true,
+  hasDrink = true,
+  hasFood = true,
+  hasDessert = true,
+}: Props) {
   const { menuOpen, setMenuOpen } = useMenu();
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
+
+  const menuSubItems = [
+    { label: "LUNCH", href: "#lunch-menu", visible: hasLunch },
+    { label: "DRINK", href: "#drink-menu", visible: hasDrink },
+    { label: "FOOD", href: "#food-menu", visible: hasFood },
+    { label: "DESSERT", href: "#dessert-menu", visible: hasDessert },
+  ].filter((item) => item.visible);
+
+  const navLinks = [
+    { label: "STORY", href: "/story" },
+    { label: "ABOUT US", href: "/about" },
+    ...(menuSubItems.length > 0
+      ? [{ label: "MENU", subItems: menuSubItems }]
+      : []),
+    { label: "INFORMATION", href: "#visit" },
+    { label: "ONLINE SHOP", href: "https://www.natuview.jp/", external: true },
+  ];
   const pathname = usePathname();
   const router = useRouter();
   const isStoryPage = pathname === "/story" || pathname === "/about" || pathname.startsWith("/menu") || pathname.startsWith("/privacy");

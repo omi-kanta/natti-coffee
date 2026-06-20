@@ -46,8 +46,22 @@ export default async function LunchDetailPage({
   const { draftKey } = await searchParams
   const { isEnabled } = await draftMode()
 
-  const item = await getMenuItem(slug, isEnabled ? draftKey : undefined).catch(() => null)
+  const [item, drinkItems, foodItems, lunchItems, dessertItems] = await Promise.all([
+    getMenuItem(slug, isEnabled ? draftKey : undefined).catch(() => null),
+    getMenuList('drink'),
+    getMenuList('food'),
+    getMenuList('lunch'),
+    getMenuList('dessert'),
+  ])
   if (!item) notFound()
 
-  return <LunchDetailContent item={item} />
+  return (
+    <LunchDetailContent
+      item={item}
+      hasLunch={lunchItems.length > 0}
+      hasDrink={drinkItems.length > 0}
+      hasFood={foodItems.length > 0}
+      hasDessert={dessertItems.length > 0}
+    />
+  )
 }

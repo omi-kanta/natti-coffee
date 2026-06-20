@@ -6,6 +6,7 @@ import ThreeCards from './components/ThreeCards';
 import Closing from './components/Closing';
 import Footer from '../components/Footer';
 import { getStoryContent } from '@/lib/story';
+import { getMenuList } from '@/lib/menu';
 import { draftMode } from 'next/headers';
 
 export const metadata: Metadata = {
@@ -36,11 +37,22 @@ export default async function StoryPage({
 }) {
   const { draftKey } = await searchParams;
   const { isEnabled } = await draftMode();
-  const story = await getStoryContent(isEnabled ? draftKey : undefined);
+  const [story, drinkItems, foodItems, lunchItems, dessertItems] = await Promise.all([
+    getStoryContent(isEnabled ? draftKey : undefined),
+    getMenuList('drink'),
+    getMenuList('food'),
+    getMenuList('lunch'),
+    getMenuList('dessert'),
+  ]);
 
   return (
     <main style={{ backgroundColor: '#F5F0EB' }}>
-      <Header />
+      <Header
+          hasLunch={lunchItems.length > 0}
+          hasDrink={drinkItems.length > 0}
+          hasFood={foodItems.length > 0}
+          hasDessert={dessertItems.length > 0}
+        />
       <Hero
         image={story?.topImage?.url}
       />
@@ -76,7 +88,12 @@ export default async function StoryPage({
         endingText={story?.storyEndingText}
         endingSubText={story?.storyEndingSubText}
       />
-      <Footer />
+      <Footer
+          hasLunch={lunchItems.length > 0}
+          hasDrink={drinkItems.length > 0}
+          hasFood={foodItems.length > 0}
+          hasDessert={dessertItems.length > 0}
+        />
     </main>
   );
 }

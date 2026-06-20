@@ -69,7 +69,12 @@ export default async function Top({
           businessHours={settings?.infoBusinessHours}
           closed={settings?.infoClosed}
         />
-        <Header />
+        <Header
+          hasLunch={lunchItems.length > 0}
+          hasDrink={drinkItems.length > 0}
+          hasFood={foodItems.length > 0}
+          hasDessert={dessertItems.length > 0}
+        />
         <HeroSlider catchcopy={settings?.catchCopy} />
         <TopMessageSection
           topTitle={settings?.topTitle}
@@ -116,7 +121,12 @@ export default async function Top({
           dog={settings?.infoDog}
           mapUrl={settings?.infoMap}
         />
-        <Footer />
+        <Footer
+          hasLunch={lunchItems.length > 0}
+          hasDrink={drinkItems.length > 0}
+          hasFood={foodItems.length > 0}
+          hasDessert={dessertItems.length > 0}
+        />
       </main>
     </LoadingWrapper>
   );

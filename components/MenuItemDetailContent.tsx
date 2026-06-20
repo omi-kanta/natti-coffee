@@ -38,10 +38,18 @@ const allergenEmoji: Record<string, string> = {
 }
 
 
-export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
+type Props = {
+  item: MenuItem
+  hasLunch?: boolean
+  hasDrink?: boolean
+  hasFood?: boolean
+  hasDessert?: boolean
+}
+
+export default function MenuItemDetailContent({ item, hasLunch, hasDrink, hasFood, hasDessert }: Props) {
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
-      <Header />
+      <Header hasLunch={hasLunch} hasDrink={hasDrink} hasFood={hasFood} hasDessert={hasDessert} />
 
       {/* SP: 商品名（画像の上） */}
       <div className="md:hidden px-8 pt-10 pb-3">
@@ -251,7 +259,7 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
 
       </div>
 
-      <Footer />
+      <Footer hasLunch={hasLunch} hasDrink={hasDrink} hasFood={hasFood} hasDessert={hasDessert} />
     </div>
   )
 }

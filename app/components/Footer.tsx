@@ -2,7 +2,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Footer() {
+type Props = {
+  hasLunch?: boolean;
+  hasDrink?: boolean;
+  hasFood?: boolean;
+  hasDessert?: boolean;
+};
+
+export default function Footer({
+  hasLunch = true,
+  hasDrink = true,
+  hasFood = true,
+  hasDessert = true,
+}: Props) {
   const pathname = usePathname();
   const isTop = pathname === "/";
 
@@ -54,41 +66,51 @@ export default function Footer() {
                 About Us
               </Link>
             </div>
-            {/* Drink Menu と Food Menu を横並び */}
-            <div className="flex gap-6 mb-3">
-              <a
-                href={isTop ? "#lunch-menu" : "/#lunch-menu"}
-                style={linkStyle}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
-              >
-                Lunch
-              </a>
-              <a
-                href={isTop ? "#drink-menu" : "/#drink-menu"}
-                style={linkStyle}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
-              >
-                Drink
-              </a>
-              <a
-                href={isTop ? "#food-menu" : "/#food-menu"}
-                style={linkStyle}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
-              >
-                Food
-              </a>
-              <a
-                href={isTop ? "#dessert-menu" : "/#dessert-menu"}
-                style={linkStyle}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
-              >
-                Dessert
-              </a>
-            </div>
+            {/* Lunch / Drink / Food / Dessert リンク（コンテンツが存在する場合のみ表示） */}
+            {(hasLunch || hasDrink || hasFood || hasDessert) && (
+              <div className="flex gap-6 mb-3">
+                {hasLunch && (
+                  <a
+                    href={isTop ? "#lunch-menu" : "/#lunch-menu"}
+                    style={linkStyle}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+                  >
+                    Lunch
+                  </a>
+                )}
+                {hasDrink && (
+                  <a
+                    href={isTop ? "#drink-menu" : "/#drink-menu"}
+                    style={linkStyle}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+                  >
+                    Drink
+                  </a>
+                )}
+                {hasFood && (
+                  <a
+                    href={isTop ? "#food-menu" : "/#food-menu"}
+                    style={linkStyle}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+                  >
+                    Food
+                  </a>
+                )}
+                {hasDessert && (
+                  <a
+                    href={isTop ? "#dessert-menu" : "/#dessert-menu"}
+                    style={linkStyle}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+                  >
+                    Dessert
+                  </a>
+                )}
+              </div>
+            )}
             {/* Information */}
             <div>
               <a
