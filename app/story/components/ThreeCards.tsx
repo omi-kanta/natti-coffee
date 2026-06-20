@@ -10,6 +10,7 @@ type CardData = {
   title?: string
   text?: string
   detailedImage?: { url: string; width: number; height: number }
+  buttonLabel?: string
 }
 
 type ThreeCardsProps = {
@@ -30,9 +31,9 @@ const cardVariants: Variants = {
 
 export default function ThreeCards({ left, center, right }: ThreeCardsProps) {
   const cards = [
-    { title: left?.title, imageSrc: left?.image, body: left?.text, detailedImage: left?.detailedImage },
-    { title: center?.title, imageSrc: center?.image, body: center?.text, detailedImage: center?.detailedImage },
-    { title: right?.title, imageSrc: right?.image, body: right?.text, detailedImage: right?.detailedImage },
+    { title: left?.title, imageSrc: left?.image, body: left?.text, detailedImage: left?.detailedImage, buttonLabel: left?.buttonLabel },
+    { title: center?.title, imageSrc: center?.image, body: center?.text, detailedImage: center?.detailedImage, buttonLabel: center?.buttonLabel },
+    { title: right?.title, imageSrc: right?.image, body: right?.text, detailedImage: right?.detailedImage, buttonLabel: right?.buttonLabel },
   ];
 
   return (
@@ -121,7 +122,7 @@ export default function ThreeCards({ left, center, right }: ThreeCardsProps) {
                 </p>
               )}
               {card.detailedImage && (
-                <StoryCardModal detailedImage={card.detailedImage} />
+                <StoryCardModal detailedImage={card.detailedImage} buttonLabel={card.buttonLabel} />
               )}
             </motion.div>
           ))}
