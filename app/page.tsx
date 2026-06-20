@@ -91,6 +91,8 @@ export default async function Top({
             settings?.conceptImage3?.url,
             settings?.conceptImage4?.url,
           ].filter((url): url is string => Boolean(url))}
+          concepInfoTitle={settings?.concepInfoTitle}
+          concepInfoText={settings?.concepInfoText}
         />
         <LunchMenu items={lunchItems} />
         <CoffeeMenu items={drinkItems} />

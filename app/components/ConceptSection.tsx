@@ -6,14 +6,17 @@ import { motion } from 'framer-motion'
 type ConceptSectionProps = {
   text?: string
   images?: string[]
+  concepInfoTitle?: string
+  concepInfoText?: string
 }
 
-export default function ConceptSection({ text, images }: ConceptSectionProps) {
+export default function ConceptSection({ text, images, concepInfoTitle, concepInfoText }: ConceptSectionProps) {
   if (!text && (!images || images.length === 0)) return null
 
   const lines = text ? text.split('\n').filter(line => line.trim() !== '') : []
   const hasMarquee = images && images.length >= 2
   const marqueeImages = hasMarquee ? [...images, ...images] : []
+  const showOverlay = Boolean(concepInfoTitle || concepInfoText)
 
   return (
     <section
@@ -69,37 +72,96 @@ export default function ConceptSection({ text, images }: ConceptSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          style={{ overflow: 'hidden', width: '100%' }}
         >
-          <div
-            className="marquee-track"
-            style={{
-              display: 'flex',
-              gap: '12px',
-              width: 'max-content',
-            }}
-          >
-            {marqueeImages.map((url, i) => (
+          {/*
+            CSS Grid で横スクロールとオーバーレイを同一セル（1/1）に重ねる。
+            overflow: hidden は内側の div のみに適用し、
+            パネルはグリッドの align-self: end で下端に固定。
+          */}
+          <div style={{ display: 'grid' }}>
+            {/* 横スクロールのクリップ（グリッドセル 1-1） */}
+            <div
+              style={{
+                gridColumn: '1',
+                gridRow: '1',
+                overflow: 'hidden',
+                width: '100%',
+              }}
+            >
               <div
-                key={i}
-                className="w-[360px] h-[475px] md:w-[480px] md:h-[580px]"
+                className="marquee-track"
+                style={{ display: 'flex', gap: '12px', width: 'max-content' }}
+              >
+                {marqueeImages.map((url, i) => (
+                  <div
+                    key={i}
+                    className="w-[360px] h-[475px] md:w-[480px] md:h-[580px]"
+                    style={{
+                      flexShrink: 0,
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      position: 'relative',
+                    }}
+                  >
+                    <Image
+                      src={url.split('?')[0]}
+                      alt="concept"
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="400px"
+                      unoptimized
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* テキストオーバーレイパネル（グリッドセル 1-1 に重ねて下端固定） */}
+            {showOverlay && (
+              <div
+                className="w-[360px] md:w-[480px]"
                 style={{
-                  flexShrink: 0,
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  position: 'relative',
+                  gridColumn: '1',
+                  gridRow: '1',
+                  alignSelf: 'end',
+                  justifySelf: 'start',
+                  zIndex: 20,
+                  backgroundColor: 'rgba(255,255,255,0.82)',
+                  padding: 'clamp(20px, 3%, 32px)',
+                  pointerEvents: 'none',
                 }}
               >
-                <Image
-                  src={url.split('?')[0]}
-                  alt="concept"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  sizes="400px"
-                  unoptimized
-                />
+                {concepInfoTitle && (
+                  <h3
+                    style={{
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      fontSize: 'clamp(16px, 1.8vw, 22px)',
+                      fontWeight: 700,
+                      color: '#1A1A1A',
+                      lineHeight: 1.5,
+                      marginBottom: concepInfoText ? '10px' : 0,
+                    }}
+                  >
+                    {concepInfoTitle}
+                  </h3>
+                )}
+                {concepInfoText && (
+                  <p
+                    style={{
+                      fontFamily: "'Noto Sans JP', sans-serif",
+                      fontWeight: 300,
+                      fontSize: 'clamp(13px, 1.3vw, 15px)',
+                      color: '#3D3D3D',
+                      lineHeight: 1.9,
+                      whiteSpace: 'pre-line',
+                      margin: 0,
+                    }}
+                  >
+                    {concepInfoText}
+                  </p>
+                )}
               </div>
-            ))}
+            )}
           </div>
         </motion.div>
       )}

@@ -22,4 +22,7 @@ export type Settings = {
   conceptImage4?: { url: string; width: number; height: number }
   topTitle?: string
   topText?: string
+  squareName?: string
+  concepInfoTitle?: string
+  concepInfoText?: string
 }
