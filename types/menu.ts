@@ -39,5 +39,5 @@ export type MenuItem = {
   label?: string[];
   focusNutrient?: string;
   allergens: Allergen[];
-  drinkTemperature?: ('hot' | 'ice')[];
+  drinkTemperature?: ('Hot' | 'Ice')[];
 };
