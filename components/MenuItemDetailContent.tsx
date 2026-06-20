@@ -114,10 +114,10 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
               </h1>
               {item.drinkTemperature && item.drinkTemperature.length > 0 && (
                 <span className="flex gap-1">
-                  {item.drinkTemperature.includes('hot') && (
+                  {item.drinkTemperature.includes('Hot') && (
                     <span className="text-xs rounded-full px-2 py-0.5 bg-red-50 text-red-600 border border-red-200">Hot</span>
                   )}
-                  {item.drinkTemperature.includes('ice') && (
+                  {item.drinkTemperature.includes('Ice') && (
                     <span className="text-xs rounded-full px-2 py-0.5 bg-blue-50 text-blue-600 border border-blue-200">Ice</span>
                   )}
                 </span>
