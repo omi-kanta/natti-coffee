@@ -54,16 +54,7 @@ function MenuCard({ item, href }: { item: MenuItem; href: string }) {
           >
             {item.name}
           </p>
-          {item.drinkTemperature && item.drinkTemperature.length > 0 && (
-            <span className="flex gap-1">
-              {item.drinkTemperature.includes('Hot') && (
-                <span className="text-xs rounded-full px-2 py-0.5 bg-red-50 text-red-600 border border-red-200">Hot</span>
-              )}
-              {item.drinkTemperature.includes('Ice') && (
-                <span className="text-xs rounded-full px-2 py-0.5 bg-blue-50 text-blue-600 border border-blue-200">Ice</span>
-              )}
-            </span>
-          )}
+
         </div>
         <p
           className="mt-1"
