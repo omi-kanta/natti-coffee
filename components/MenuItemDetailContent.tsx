@@ -45,12 +45,24 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
 
       {/* SP: 商品名（画像の上） */}
       <div className="md:hidden px-8 pt-10 pb-3">
-        <h1
-          className="text-2xl font-bold text-[#1A1A1A] leading-snug"
-          style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-        >
-          {item.name}
-        </h1>
+        <div className="flex items-center gap-2 flex-wrap">
+          <h1
+            className="text-2xl font-bold text-[#1A1A1A] leading-snug"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            {item.name}
+          </h1>
+          {item.drinkTemperature && item.drinkTemperature.length > 0 && (
+            <span className="flex gap-1">
+              {item.drinkTemperature.includes('hot') && (
+                <span className="text-xs rounded-full px-2 py-0.5 bg-red-50 text-red-600 border border-red-200">Hot</span>
+              )}
+              {item.drinkTemperature.includes('ice') && (
+                <span className="text-xs rounded-full px-2 py-0.5 bg-blue-50 text-blue-600 border border-blue-200">Ice</span>
+              )}
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="max-w-5xl mx-auto md:px-8 md:py-10 mb-3">
@@ -93,12 +105,24 @@ export default function MenuItemDetailContent({ item }: { item: MenuItem }) {
               </div>
             )}
             {/* PC専用: 商品名 */}
-            <h1
-              className="hidden md:block text-2xl font-bold text-[#1A1A1A] leading-snug mb-3"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              {item.name}
-            </h1>
+            <div className="hidden md:flex items-center gap-2 flex-wrap mb-3">
+              <h1
+                className="text-2xl font-bold text-[#1A1A1A] leading-snug"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                {item.name}
+              </h1>
+              {item.drinkTemperature && item.drinkTemperature.length > 0 && (
+                <span className="flex gap-1">
+                  {item.drinkTemperature.includes('hot') && (
+                    <span className="text-xs rounded-full px-2 py-0.5 bg-red-50 text-red-600 border border-red-200">Hot</span>
+                  )}
+                  {item.drinkTemperature.includes('ice') && (
+                    <span className="text-xs rounded-full px-2 py-0.5 bg-blue-50 text-blue-600 border border-blue-200">Ice</span>
+                  )}
+                </span>
+              )}
+            </div>
 
             {/* 価格 */}
             <p

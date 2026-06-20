@@ -42,17 +42,29 @@ function MenuCard({ item, href }: { item: MenuItem; href: string }) {
         />
       </div>
       <div className="mt-3 px-1">
-        <p
-          style={{
-            fontSize: "13px",
-            fontWeight: 600,
-            color: "#1A1A1A",
-            letterSpacing: "0.03em",
-            fontFamily: "'Josefin Sans', sans-serif",
-          }}
-        >
-          {item.name}
-        </p>
+        <div className="flex items-center gap-2 flex-wrap">
+          <p
+            style={{
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#1A1A1A",
+              letterSpacing: "0.03em",
+              fontFamily: "'Josefin Sans', sans-serif",
+            }}
+          >
+            {item.name}
+          </p>
+          {item.drinkTemperature && item.drinkTemperature.length > 0 && (
+            <span className="flex gap-1">
+              {item.drinkTemperature.includes('hot') && (
+                <span className="text-xs rounded-full px-2 py-0.5 bg-red-50 text-red-600 border border-red-200">Hot</span>
+              )}
+              {item.drinkTemperature.includes('ice') && (
+                <span className="text-xs rounded-full px-2 py-0.5 bg-blue-50 text-blue-600 border border-blue-200">Ice</span>
+              )}
+            </span>
+          )}
+        </div>
         <p
           className="mt-1"
           style={{
