@@ -16,6 +16,10 @@ export type Settings = {
   natuviewImage?: { url: string; width: number; height: number }
   conceptText?: string
   conceptImage?: { url: string; width: number; height: number }
+  conceptImage1?: { url: string; width: number; height: number }
+  conceptImage2?: { url: string; width: number; height: number }
+  conceptImage3?: { url: string; width: number; height: number }
+  conceptImage4?: { url: string; width: number; height: number }
   topTitle?: string
   topText?: string
 }

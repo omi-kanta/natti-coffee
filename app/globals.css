@@ -14,3 +14,13 @@ body {
   font-family: "Noto Sans JP", sans-serif;
 }
 
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 36s linear infinite;
+}
+
+

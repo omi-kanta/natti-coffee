@@ -5,13 +5,15 @@ import { motion } from 'framer-motion'
 
 type ConceptSectionProps = {
   text?: string
-  image?: string
+  images?: string[]
 }
 
-export default function ConceptSection({ text, image }: ConceptSectionProps) {
-  if (!text && !image) return null
+export default function ConceptSection({ text, images }: ConceptSectionProps) {
+  if (!text && (!images || images.length === 0)) return null
 
   const lines = text ? text.split('\n').filter(line => line.trim() !== '') : []
+  const hasMarquee = images && images.length >= 2
+  const marqueeImages = hasMarquee ? [...images, ...images] : []
 
   return (
     <section
@@ -60,8 +62,50 @@ export default function ConceptSection({ text, image }: ConceptSectionProps) {
         )}
       </div>
 
-      {/* 画像 SP: max-w内・4/3 */}
-      {image && (
+      {/* マーキー（2枚以上） */}
+      {hasMarquee && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          style={{ overflow: 'hidden', width: '100%' }}
+        >
+          <div
+            className="marquee-track"
+            style={{
+              display: 'flex',
+              gap: '12px',
+              width: 'max-content',
+            }}
+          >
+            {marqueeImages.map((url, i) => (
+              <div
+                key={i}
+                className="w-[360px] h-[475px] md:w-[480px] md:h-[580px]"
+                style={{
+                  flexShrink: 0,
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                }}
+              >
+                <Image
+                  src={url.split('?')[0]}
+                  alt="concept"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="400px"
+                  unoptimized
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* 静止画（1枚以下） SP */}
+      {!hasMarquee && images && images.length === 1 && (
         <motion.div
           className="md:hidden px-6 max-w-5xl mx-auto"
           initial={{ opacity: 0, y: 16 }}
@@ -69,17 +113,14 @@ export default function ConceptSection({ text, image }: ConceptSectionProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div
-            className="w-full overflow-hidden"
-            style={{ borderRadius: '8px' }}
-          >
+          <div className="w-full overflow-hidden" style={{ borderRadius: '8px' }}>
             <Image
-              src={image.split('?')[0]}
+              src={images[0].split('?')[0]}
               alt="concept"
               width={1920}
               height={1080}
               className="w-full h-auto"
-              style={{ display: "block" }}
+              style={{ display: 'block' }}
               sizes="100vw"
               unoptimized
             />
@@ -87,8 +128,8 @@ export default function ConceptSection({ text, image }: ConceptSectionProps) {
         </motion.div>
       )}
 
-      {/* 画像 PC: フルワイド・16/7 */}
-      {image && (
+      {/* 静止画（1枚以下） PC */}
+      {!hasMarquee && images && images.length === 1 && (
         <motion.div
           className="hidden md:block px-10"
           style={{ maxWidth: '1200px', margin: '0 auto' }}
@@ -97,17 +138,14 @@ export default function ConceptSection({ text, image }: ConceptSectionProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div
-            className="w-full overflow-hidden"
-            style={{ borderRadius: '8px' }}
-          >
+          <div className="w-full overflow-hidden" style={{ borderRadius: '8px' }}>
             <Image
-              src={image.split('?')[0]}
+              src={images[0].split('?')[0]}
               alt="concept"
               width={1920}
               height={1080}
               className="w-full h-auto"
-              style={{ display: "block" }}
+              style={{ display: 'block' }}
               sizes="100vw"
               unoptimized
             />

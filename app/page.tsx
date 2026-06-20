@@ -85,7 +85,12 @@ export default async function Top({
         />
         <ConceptSection
           text={settings?.conceptText}
-          image={settings?.conceptImage?.url}
+          images={[
+            settings?.conceptImage1?.url,
+            settings?.conceptImage2?.url,
+            settings?.conceptImage3?.url,
+            settings?.conceptImage4?.url,
+          ].filter((url): url is string => Boolean(url))}
         />
         <LunchMenu items={lunchItems} />
         <CoffeeMenu items={drinkItems} />
