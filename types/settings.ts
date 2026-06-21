@@ -25,4 +25,6 @@ export type Settings = {
   squareName?: string
   concepInfoTitle?: string
   concepInfoText?: string
+  drinkIMenuImage?: { url: string; width: number; height: number }
+  desertMenuImage?: { url: string; width: number; height: number }
 }

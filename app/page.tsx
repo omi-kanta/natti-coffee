@@ -100,9 +100,9 @@ export default async function Top({
           concepInfoText={settings?.concepInfoText}
         />
         <LunchMenu items={lunchItems} />
-        <CoffeeMenu items={drinkItems} />
+        <CoffeeMenu items={drinkItems} drinkMenuImage={settings?.drinkIMenuImage} />
         <FoodMenu items={foodItems} />
-        <DessertMenu items={dessertItems} />
+        <DessertMenu items={dessertItems} dessertMenuImage={settings?.desertMenuImage} />
         <MenuPdfBanner menuPdfUrl={settings?.menuPdfUrl} />
         <Instagram posts={posts} />
         <NatuviewSection
