@@ -95,9 +95,9 @@ export default function Header({
   return (
     <>
       <header
-        className="sticky z-50 flex items-center justify-between px-6 md:px-10 h-14 md:h-[70px]"
+        className={`sticky z-50 flex items-center justify-between px-6 md:px-10 h-14 md:h-[70px] ${!isStoryPage ? "top-16 md:top-10" : "top-0"}`}
         style={{
-          top: isStoryPage ? "0px" : "40px",
+          top: isStoryPage ? "0px" : undefined,
           backgroundColor: "#FFFFFF",
           borderBottom: "1px solid #E8E8E8",
         }}

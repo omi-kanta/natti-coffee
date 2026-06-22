@@ -10,7 +10,7 @@ export default function AnnouncementBar({ businessHours, closed }: Props) {
 
   return (
     <div
-      className="sticky top-0 z-[60] flex items-center justify-center h-10 md:h-10"
+      className="sticky top-0 z-[60] flex items-center justify-center h-16 md:h-10"
       style={{ backgroundColor: "#F5F5F5" }}
     >
       {/* PC: 横並び1行（既存通り） */}
