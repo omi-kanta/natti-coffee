@@ -27,4 +27,5 @@ export type Settings = {
   concepInfoText?: string
   drinkIMenuImage?: { url: string; width: number; height: number }
   desertMenuImage?: { url: string; width: number; height: number }
+  calendarImage?: { url: string; width: number; height: number }
 }

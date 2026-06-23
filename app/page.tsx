@@ -12,6 +12,7 @@ import Instagram from "./components/Instagram";
 import NatuviewSection from "./components/NatuviewSection";
 import ConceptSection from "./components/ConceptSection";
 import VisitUs from "./components/VisitUs";
+import CalendarSection from "./components/CalendarSection";
 import Footer from "./components/Footer";
 import TopMessageSection from "./components/TopMessageSection";
 import { getMenuList } from "@/lib/menu";
@@ -121,6 +122,7 @@ export default async function Top({
           dog={settings?.infoDog}
           mapUrl={settings?.infoMap}
         />
+        <CalendarSection image={settings?.calendarImage} />
         <Footer
           hasLunch={lunchItems.length > 0}
           hasDrink={drinkItems.length > 0}
