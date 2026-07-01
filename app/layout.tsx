@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import ReservationButton from "./components/ReservationButton";
 import { LoadingProvider } from "./components/LoadingContext";
@@ -79,6 +80,18 @@ export default function RootLayout({
             </ModalProvider>
           </LoadingProvider>
         </MenuProvider>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-9P67JEBTVE"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9P67JEBTVE');
+          `}
+        </Script>
       </body>
     </html>
   );
